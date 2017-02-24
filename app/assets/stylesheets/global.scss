@@ -1,0 +1,18 @@
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+$dark-gray: #383838;
+$middle-gray: #8a8a8a;
+$middle-dark-gray: #737373;
+$light-gray: #cccccc;
+$yellow: #ffc324;
+
+header.navbar {
+  background: $dark-gray;
+  margin: 0px;
+}
+
+.container {
+  padding: 0px;
+  width: 1600px;
+}

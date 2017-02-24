@@ -1,0 +1,24 @@
+ul.pull-right class="nav nav-pills"
+  li role="presentation" class="active"
+    = link_to "MY INFO", "#"
+  li role="presentation"
+    = link_to "MY COLLEGE", "#"
+  li role="presentation"
+    = link_to "COURSE", "#"
+  li role="presentation"
+    = link_to "NEWS", "#"
+.container
+  .row
+    .col-md-2
+      = image_tag @user.avatar.url(:thumb), class: 'img-circle', height: 100, width: 100
+      p= @user.gender ? "男" : "女"
+      p
+        span= @user.age
+        span YEARS
+      p
+        | E-MAIL:
+        = @user.email
+      p
+        | PHONE:
+        = @user.phone
+    .col-md-8
