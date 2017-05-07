@@ -1,5 +1,6 @@
 class AppliesController < ApplicationController
   before_action :set_apply, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: 'create'
 
   # GET /applies
   # GET /applies.json

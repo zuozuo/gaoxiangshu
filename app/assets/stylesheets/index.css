@@ -11,6 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  *= require 'spaces'
+ *= require 'global'
  *= require '_index'
- *= require_self
  */

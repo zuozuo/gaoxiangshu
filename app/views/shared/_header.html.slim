@@ -3,3 +3,4 @@ header.bs-docs-nav.navbar.navbar-static-top
     .navbar-header
       nav.collapse.navbar-collapse#bs-navbar
         ul.nav.navbar-nav
+          = link_to "登出", destroy_user_session_path, method: :delete, class: 'logout'
