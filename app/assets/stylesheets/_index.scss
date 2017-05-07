@@ -1,0 +1,199 @@
+@import "global";
+.hidden {
+	display: hidden;
+}
+.container {
+  width: 1350px;
+}
+.circle {
+	border-radius: 50%;
+}
+.center {
+  text-align: center;
+}
+.header {
+  height: 617px;
+  width: 100%;
+  background-image: image-url("index/top_bk.png");
+  background-repeat: round;
+}
+.text_logo {
+  margin-top: 50px;
+}
+.header_bottom {
+  img {
+    width: 100%;
+  }
+}
+.tabs {
+  margin-top: -80px;
+  img {
+    margin-right: 5%;
+    margin-left: 5%;
+  }
+}
+.teaching_advantage {
+  margin-top: 80px;
+  .advantage_content {
+    margin-top: 40px;
+    height: 400px;
+    width: 100%;
+    background-repeat: round;
+    .content {
+      padding: 25px 30px;
+      text-align: left;
+      .title {
+        text-align: center;
+        margin-bottom: 30px;
+      }
+      p {
+        text-indent: 30px;
+      }
+			ul {
+				padding-left: 20px;
+			}
+    }
+  }
+  .teacher_info {
+    img {
+      width: 246px;
+      height: 246px;
+    }
+  }
+}
+.active_news {
+  margin-top: 60px;
+}
+#news_image {
+  margin-top: 40px;
+  .carousel-indicators {
+    position: relative;
+    margin-top: 40px;
+    li {
+      width: 120px;
+      height: 6px;
+      background: #ccc;
+    }
+    li.active {
+      margin: 1px;
+      background: #ffc324;
+    }
+  }
+	.tab-content {
+		height: 300px;
+	}
+}
+.xiangshu_taste {
+	.video_list {
+		padding-top: 40px;
+		.circle_div {
+			width: 20%;
+			height: 250px;
+			text-align: center;
+		}
+		.circle {
+			display: inline-block;
+			margin-top: 25px;
+			background: #777;
+			height: 160px;
+			width: 160px;
+			cursor: pointer;
+			@include transition(all .3s ease);
+		}
+		.circle.active {
+			margin-top: 0px;
+			height: 210px;
+			width: 210px;
+		}
+	}
+	.apply_listen {
+		margin-top: 80px;
+		.form-inputs {
+			padding-top: 20px;
+			.form-group {
+				text-align: center;
+				input {
+					display: inline-block;
+					margin-top: 10px;
+					height: 60px;
+					width: 530px;
+					border: 2px solid $dark-gray;
+					@include border-radius(10px);
+				}
+			}
+		}
+		.form-actions {
+			padding-top: 20px;
+			input[type='submit'] {
+				border: 0px;
+				height: 45px;
+				width: 200px;
+				@include border-radius(10px);
+				font-size: 20px;
+				background: $yellow;
+			}
+		}
+	}
+}
+
+.about_gaoxiangshu {
+	margin-top: 100px;
+	.about_content {
+		font-size: 15px;
+		margin-top: 40px;
+		padding: 40px;
+		background: $yellow;
+		.title {
+			margin-left: 20%;
+			margin-bottom: 40px;
+		}
+		p {
+			text-align: left;
+			text-indent: 30px;
+			margin-bottom: 20px;
+		}
+		.content_left{
+			width: 50%;
+			padding: 0px 20px;
+		}
+		.content_middle {
+			width: 5%;
+		}
+		.content_right {
+			width: 45%;
+		}
+	}
+	.back_top {
+		margin-top: 40px;
+		cursor: pointer;
+	}
+	.social_net {
+		.logo_list {
+			display: inline-block;
+			margin-top: 40px;
+			.wechat {
+				margin-right: 80px;
+			}
+		}
+	}
+	.footer {
+		margin-top: 40px;
+		.address, .phone, .company {
+			margin-right: 40px;
+		}
+	}
+}
+.footer_line {
+	img {
+		margin-top: 20px;
+		width: 100%;
+	}
+}
+#flash {
+	padding: 20px;
+	text-align: center;
+	font-size: 16px;
+	p {
+		margin: 0px;
+	}
+}

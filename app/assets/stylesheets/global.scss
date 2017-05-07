@@ -7,6 +7,21 @@ $middle-dark-gray: #737373;
 $light-gray: #cccccc;
 $yellow: #ffc324;
 
+@mixin transition($args...) {
+  -webkit-transition: $args;
+  -moz-transition: $args;
+  -ms-transition: $args;
+  -o-transition: $args;
+  transition: $args;
+}
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  -ms-border-radius: $radius;
+  -o-border-radius: $radius;
+}
+
 header.navbar {
   background: $dark-gray;
   margin: 0px;
@@ -14,5 +29,5 @@ header.navbar {
 
 .container {
   padding: 0px;
-  width: 1600px;
+  // width: 1600px;
 }

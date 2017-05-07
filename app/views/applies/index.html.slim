@@ -1,0 +1,23 @@
+h1 Listing applies
+
+table
+  thead
+    tr
+      th Name
+      th Phone
+      th
+      th
+      th
+
+  tbody
+    - @applies.each do |apply|
+      tr
+        td = apply.name
+        td = apply.phone
+        td = link_to 'Show', apply
+        td = link_to 'Edit', edit_apply_path(apply)
+        td = link_to 'Destroy', apply, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Apply', new_apply_path

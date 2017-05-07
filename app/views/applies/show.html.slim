@@ -1,0 +1,12 @@
+p#notice = notice
+
+p
+  strong Name:
+  = @apply.name
+p
+  strong Phone:
+  = @apply.phone
+
+= link_to 'Edit', edit_apply_path(@apply)
+'|
+= link_to 'Back', applies_path
