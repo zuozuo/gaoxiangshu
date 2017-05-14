@@ -108,7 +108,8 @@ html
         .carousel-inner[role="listbox"]
           - news.each_with_index do |new, i|
             .item class="#{i == 1 and 'active'}" data-content="#tab#{i}"
-              img src=new.image.url
+              a href=new.url target="_blank"
+                img src=new.image.url
         ol.carousel-indicators
           li[data-target="#news_image" data-slide-to="0"]
           li.active[data-target="#news_image" data-slide-to="1"]
