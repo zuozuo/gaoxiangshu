@@ -18,14 +18,14 @@ html
           = image_tag("index/goto_listen.png", class: 'pull-right')
       .clearfix
       .logo.center
-        = image_tag("index/logo.gif")
+        = image_tag("index/logo.png")
       .slogen.center
         = image_tag("index/take_away_your_knowledge.png")
       .text_logo.center
         = image_tag("index/tall_oak_academy.png")
       .text_divider.center
         = image_tag("index/text_divider.png")
-      .life_long.center
+      /.life_long.center
         = image_tag("index/life_long_knowledge.png")
     .header_bottom
       = image_tag("index/header_bottom.png")
@@ -103,7 +103,7 @@ html
       .active_news.center#news
         = image_tag("index/active_news.png")
 
-      - news = News.order("id desc").limit(3)
+      - news = News.order("id").limit(3)
       #news_image.carousel.slide
         .carousel-inner[role="listbox"]
           - news.each_with_index do |new, i|
@@ -120,9 +120,9 @@ html
                 = new.title
         .tab-content
           - news.each_with_index do |new, i|
-            .tab-pane role="tabpanel" class="#{i == 1 and 'active'}" id="tab_content#{i}"
-              = new.content
-      .xiangshu_taste.center#listen
+            .tab-pane style='font-size: 16px;' role="tabpanel" class="#{i == 1 and 'active'}" id="tab_content#{i}"
+              = raw new.content.gsub(/\n/, '<br />')
+      .xiangshu_taste.center#listen style='margin-top: 40px;'
         = image_tag("index/xiangshu_taste.png")
         /.video_list.center
           .circle_div.pull-left
