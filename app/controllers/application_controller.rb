@@ -9,7 +9,16 @@ class ApplicationController < ActionController::Base
     if devise_controller?
       "devise"
     else
-      "application"
+      if current_user
+        case current_user.type
+        when 'Student', 'Teacher'
+          'application'
+        else
+          'admin'
+        end
+      else
+        "application"
+      end
     end
   end
 
@@ -20,7 +29,7 @@ class ApplicationController < ActionController::Base
     when 'Teacher'
       teacher_path(resource)
     else
-      user_path(resource)
+      students_path
     end
   end
 end

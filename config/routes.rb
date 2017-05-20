@@ -10,8 +10,8 @@ Rails.application.routes.draw do
   resources :colleges
   resources :news
   resources :users
-  resources :students, only: [:show, :edit, :update]
-  resources :teachers, only: [:show, :edit, :update]
+  resources :students, only: [:show, :edit, :update, :index]
+  resources :teachers, only: [:show, :edit, :update, :index]
   get 'home/index'
   root to: 'home#index'
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }

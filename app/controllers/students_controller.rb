@@ -1,6 +1,9 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update]
 
+  def index
+  end
+
   def show
     params[:course_status] ||= 'uncompleted'
     if ['uncompleted', "completed"].include?(params[:course_status])

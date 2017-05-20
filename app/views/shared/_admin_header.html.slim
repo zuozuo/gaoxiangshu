@@ -1,0 +1,14 @@
+header.bs-docs-nav.navbar.navbar-static-top
+  .container
+    .navbar-header
+      nav.collapse.navbar-collapse#bs-navbar
+        ul.nav.navbar-nav
+          li class="#{'active' if params[:controller] == 'students'}"
+            = link_to "学生列表", students_path
+          li class="#{'active' if params[:controller] == 'teachers'}"
+            = link_to "老师列表", teachers_path
+          li class="#{'active' if params[:controller] == 'news'}"
+            = link_to "首页新闻", news_index_path
+          li class="#{'active' if params[:controller] == 'applies'}"
+            = link_to "试听课申请", applies_path
+          = link_to "登出", destroy_user_session_path, method: :delete, class: 'logout'

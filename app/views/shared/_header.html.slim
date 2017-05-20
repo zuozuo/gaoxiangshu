@@ -3,6 +3,6 @@ header.bs-docs-nav.navbar.navbar-static-top
     .navbar-header
       nav.collapse.navbar-collapse#bs-navbar
         ul.nav.navbar-nav
-          li.active
-            = link_to "我的课程", user_path(current_user)
+          li class="#{'active' if params[:controller] == current_user.type.downcase.pluralize}"
+            = link_to "我的课程", my_path
           = link_to "登出", destroy_user_session_path, method: :delete, class: 'logout'
