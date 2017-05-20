@@ -12,24 +12,25 @@ html
         - flash.each do |key, value|
           div class="flash_#{key}"
             p = value
-    .header
-      .goto_listen
-        a href='#listen'
-          = image_tag("index/goto_listen.png", class: 'pull-right')
-      .clearfix
-      .logo.center
-        = image_tag("index/logo.png")
-      .slogen.center
-        = image_tag("index/take_away_your_knowledge.png")
-      .text_logo.center
-        = image_tag("index/tall_oak_academy.png")
-      .text_divider.center
-        = image_tag("index/text_divider.png")
-      /.life_long.center
-        = image_tag("index/life_long_knowledge.png")
-    .header_bottom
-      = image_tag("index/header_bottom.png")
-    .container.container-fluid
+    .container
+      .header
+        .goto_listen
+          a href='#listen'
+            = image_tag("index/goto_listen.png", class: 'pull-right')
+        .clearfix
+        .logo.center
+          = image_tag("index/logo.png")
+        .slogen.center
+          = image_tag("index/take_away_your_knowledge.png")
+        .text_logo.center
+          = image_tag("index/tall_oak_academy.png")
+        .text_divider.center
+          = image_tag("index/text_divider.png")
+        /.life_long.center
+          = image_tag("index/life_long_knowledge.png")
+      .header_bottom.container
+        = image_tag("index/header_bottom.png")
+    .container
       .tabs.center
         .imgs.pt30
           a href='#listen'
@@ -158,18 +159,17 @@ html
               = f.button :submit, "提交"
     .about_gaoxiangshu.center#about_us
       = image_tag("index/about_gaoxiangshu.png")
-      .about_content
-        .container.container-fluid
-          h4.mb30.pull-left.title Introduce Ourselves
-          .clearfix
-          .content_left.pull-left
-            p 高橡树工作团队分布于中国北京以及美国洛杉矶，提供美国教育体系下的针对初、高中生的课外补充课程及大学申请指导。我们拥有卓越的团队体系，丰富的教学管理经验，提供纯正美国学校课程，学习美国政府教学体系下的教学方法和学科内容，致力于将美国校园知识传递进入中国让学生有通路的去学习如何成为一名美国大学生，以及了解美国的生活、学习、沟通、文化的真实情况。我们坚信知识的掌握胜于考试的胜出，我们更坚信只要真正掌握了知识，就一定能胜出考试。 
-            p Tall Oak Academy located in beijing and los angeles, provides secondary school (middle and high schools) supplementary courses and college application packages to students globally. Excellent teamwork,rich experiences in teaching and management, updated  curriculum allied with official teaching methodology and content are our strengths. we are devoted to deliver a true american education experience to chinese students. we are accountable for quality teaching and learning with a sole purpose of helping chinese students to fulfill their college dreams. test preparation is not our only goal. we expect our students to experience true american education and culure by building up a solid foundation in all aspects.
-          .content_middle.pull-left
-            = image_tag("index/about_us_divider.png")
-          .content_right.pull-left
-            = image_tag("index/map.png")
-          .clearfix
+      .about_content.container
+        h4.mb30.pull-left.title Introduce Ourselves
+        .clearfix
+        .content_left.pull-left
+          p 高橡树工作团队分布于中国北京以及美国洛杉矶，提供美国教育体系下的针对初、高中生的课外补充课程及大学申请指导。我们拥有卓越的团队体系，丰富的教学管理经验，提供纯正美国学校课程，学习美国政府教学体系下的教学方法和学科内容，致力于将美国校园知识传递进入中国让学生有通路的去学习如何成为一名美国大学生，以及了解美国的生活、学习、沟通、文化的真实情况。我们坚信知识的掌握胜于考试的胜出，我们更坚信只要真正掌握了知识，就一定能胜出考试。 
+          p Tall Oak Academy located in beijing and los angeles, provides secondary school (middle and high schools) supplementary courses and college application packages to students globally. Excellent teamwork,rich experiences in teaching and management, updated  curriculum allied with official teaching methodology and content are our strengths. we are devoted to deliver a true american education experience to chinese students. we are accountable for quality teaching and learning with a sole purpose of helping chinese students to fulfill their college dreams. test preparation is not our only goal. we expect our students to experience true american education and culure by building up a solid foundation in all aspects.
+        .content_middle.pull-left
+          = image_tag("index/about_us_divider.png")
+        .content_right.pull-left
+          = image_tag("index/map.png")
+        .clearfix
       .back_top.center
         a href='#'
           = image_tag("index/back_top.png", data: {toggle: 'tooltip'}, title: '返回顶部')
