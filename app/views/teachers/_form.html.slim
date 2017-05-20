@@ -1,0 +1,13 @@
+= simple_form_for(@teacher) do |f|
+  = f.error_notification
+
+  .form-inputs
+    strong Gender：
+    = f.collection_radio_buttons :gender, [[true, 'Male'] ,[false, 'Female']], :first, :last
+    = f.input :avatar, as: :file
+    = f.input :name
+    = f.input :email
+    = f.input :phone
+
+  .form-actions
+    = f.button :submit, value: "Update User"

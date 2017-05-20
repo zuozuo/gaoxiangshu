@@ -51,7 +51,7 @@
               | 老师
             th width="20%"
         tbody
-          - (@courses.to_a*10).each do |c|
+          - @courses.each do |c|
             tr
               td= c.name
               td
