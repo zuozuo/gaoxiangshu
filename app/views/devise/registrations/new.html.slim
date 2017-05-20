@@ -1,11 +1,16 @@
-h2
-  | Sign up
-= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
-  = f.error_notification
-  .form-inputs
-    = f.input :email, required: true, autofocus: true
-    = f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
-    = f.input :password_confirmation, required: true
-  .form-actions
-    = f.button :submit, "Sign up"
-= render "devise/shared/links"
+.container
+  .login-form
+    .title
+      | 注册高橡树学院账号
+    .form-content
+      = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+        = f.error_notification
+        .form-inputs
+          = f.input :email, required: true, autofocus: true, label: false, placeholder: "请输入邮箱"
+          = f.input :password, required: true, label: false, placeholder: "请输入密码（最少6位）"
+          = f.input :password_confirmation, required: true, label: false, placeholder: "确认密码"
+        .form-actions
+          br
+          = f.button :submit, "注册账号"
+      .links.center
+        = render "devise/shared/links"

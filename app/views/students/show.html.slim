@@ -1,0 +1,64 @@
+.container.user-info
+  .row.fullheight
+    .col-md-2.left-sidebar.fullheight.pt30
+      .thumbnail.avatar.pull-left
+        = image_tag @student.avatar.url(:original), size: "100x100"
+      = link_to "编辑", edit_student_path(@student), class: 'pull-right', target: '_blank'
+      .clearfix
+      .info
+        p 
+          span 姓名：
+          span= @student.name
+        p 
+          span 邮箱：
+          span= @student.email
+        p 
+          span 电话：
+          span= @student.phone
+        p 
+          span 年龄：
+          span= @student.age
+        p 
+          span 性别：
+          = @student.gender ? "男" : "女"
+        p 
+          span 学校：
+          = @student.school
+        p 
+          span 学校类型：
+          = @student.school_type
+        p 
+          span 年级：
+          = @student.grade
+    .col-md-8.pt30
+      ul class="nav nav-tabs"
+        li role="presentation" class="#{'active' if params[:course_status] == 'uncompleted'}"
+          a href=student_path(@student, course_status: 'uncompleted')
+            | 未上课程
+        li role="presentation" class="#{'active' if params[:course_status] == 'completed'}"
+          a href=student_path(@student, course_status: 'completed')
+            | 已完成课程
+      table.table.table-hover
+        thead
+          tr
+            th width="20%"
+              | 课程名称
+            th width="20%"
+              | 上课时间
+            th width="20%"
+              | 课程时长
+            th width="20%"
+              | 老师
+            th width="20%"
+        tbody
+          - (@courses.to_a*10).each do |c|
+            tr
+              td= c.name
+              td
+                strong= c.date.strftime("%m/%d %H:%M")
+              td
+                = c.length
+                | 分钟
+              td= c.teacher.name
+              td
+                = link_to "去上课", c.url, target: '_blank'

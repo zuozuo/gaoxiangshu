@@ -33,16 +33,22 @@ html
     .container
       .tabs.center
         .imgs.pt30
-          a href='#listen'
+          a.img-link href='#listen'
             = image_tag("index/listen.png")
-          a href='#news'
+            p 试听课程
+          a.img-link href='#news'
             = image_tag("index/news.png")
-          a href='#go_abroad'
+            p 活动新闻
+          a.img-link href='#go_abroad'
             = image_tag("index/go_abroad.png")
-          a href='#about_us'
+            p 教学优势
+          a.img-link href='#about_us'
             = image_tag("index/about_us.png")
-          a href='#login'
+            p 关于我们
+          a.img-link href=new_user_session_path
             = image_tag("index/login.png")
+            p 登录网站
+          .clearfix
       /.arrow.center.mt30
         = image_tag("index/arrow.png")
       .teaching_advantage.center#go_abroad

@@ -23,11 +23,29 @@ $yellow: #ffc324;
 }
 
 header.navbar {
-  background: $dark-gray;
+  background: #03a9f4;
   margin: 0px;
+  li.active a {
+    background: #29B6F6;
+  }
+  a {
+    color: #fff;
+    &:hover {
+      background: #29B6F6;
+    }
+  }
 }
+
+input.string, input.numeric {
+  height: 40px;
+}
+html,body { height: 100%; margin: 0px; padding: 0px; }
 
 .container {
   padding: 0px;
   // width: 1600px;
+}
+
+.fullheight {
+  height: 100%;
 }

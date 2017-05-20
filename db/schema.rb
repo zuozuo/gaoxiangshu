@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170514135518) do
+ActiveRecord::Schema.define(version: 20170520171358) do
 
   create_table "applies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -28,6 +28,21 @@ ActiveRecord::Schema.define(version: 20170514135518) do
     t.string   "logo_content_type"
     t.integer  "logo_file_size"
     t.datetime "logo_updated_at"
+  end
+
+  create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "date"
+    t.integer  "length"
+    t.integer  "status"
+    t.integer  "student_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+    t.string   "url"
+    t.index ["date"], name: "index_courses_on_date", using: :btree
+    t.index ["student_id"], name: "index_courses_on_student_id", using: :btree
+    t.index ["teacher_id"], name: "index_courses_on_teacher_id", using: :btree
   end
 
   create_table "news", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -64,6 +79,10 @@ ActiveRecord::Schema.define(version: 20170514135518) do
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
     t.integer  "user_type",              default: 0
+    t.string   "type"
+    t.string   "school"
+    t.integer  "grade"
+    t.string   "school_type"
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

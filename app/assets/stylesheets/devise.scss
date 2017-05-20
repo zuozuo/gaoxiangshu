@@ -1,0 +1,36 @@
+body.devise {
+  background: #f4f7ed
+}
+
+.login-form {
+  margin: auto;
+  margin-top: 100px;
+  width: 600px;
+  background: #fff;
+  .title {
+    text-align: center;
+    padding: 20px;
+    color: #fff;
+    font-size: 20px;
+    background: #03a9f4;
+  }
+  .form-content {
+    padding: 40px 100px 100px;
+    input.string, input.password {
+      margin-top: 20px;
+      margin-bottom: 20px;
+      height: 45px;
+    }
+    input.password {
+      margin-top: 30px;
+    }
+    input[type='submit'] {
+      height: 45px;
+      width: 100%;
+    }
+    .links {
+      text-align: center;
+      margin-top: 10px;
+    }
+  }
+}

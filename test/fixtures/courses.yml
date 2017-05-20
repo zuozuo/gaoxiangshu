@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2017-05-20 17:08:10
+  length: 1
+  status: 1
+  user_id: 1
+  teacher_id: 1
+
+two:
+  date: 2017-05-20 17:08:10
+  length: 1
+  status: 1
+  user_id: 1
+  teacher_id: 1

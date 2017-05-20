@@ -13,4 +13,6 @@
  *= require 'spaces'
  *= require 'global'
  *= require 'app'
+ *= require 'devise'
+ *= require 'users'
  */
