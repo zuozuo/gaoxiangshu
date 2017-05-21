@@ -18,7 +18,7 @@
         p 
           span Gender：
           = @teacher.gender ? "Male" : "Female"
-    .col-md-8.pt30
+    .col-md-10.pt30
       ul class="nav nav-tabs"
         li role="presentation" class="#{'active' if params[:course_status] == 'uncompleted'}"
           a href=teacher_path(@teacher, course_status: 'uncompleted')

@@ -2,6 +2,7 @@ class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update]
 
   def index
+    @teachers = Teacher.all.order('id desc')
   end
 
   def show

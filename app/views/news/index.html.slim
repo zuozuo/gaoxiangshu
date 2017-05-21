@@ -1,25 +1,22 @@
-h1 Listing news
+.container.news-list
+  .title.row.mb17
+    .col-md-6
+      h3 活动新闻
+    .col-md-6
+      = link_to "添加新闻", new_news_path, class: 'btn btn-info pull-right', role: 'button', style: 'margin-top:20px'
+  - @news.each do |n|
+    .new-info.panel.panel-default
+      .panel-heading
+        strong= n.title
+        = link_to '编辑', edit_news_path(n), class: 'pull-right'
+      .panel-body
+        - if n.url.present?
+          p
+            strong 新闻网址：
+            = link_to n.url, n.url, target: '_blank'
+        p= n.content
+        p= image_tag n.image.url(:original), style: 'width:100%'
 
-table
-  thead
-    tr
-      th Title
-      th Content
-      th
-      th
-      th
-      th
-
-  tbody
-    - @news.each do |news|
-      tr
-        td = news.title
-        td = news.content
-        td = news.url
-        td = link_to 'Show', news
-        td = link_to 'Edit', edit_news_path(news)
-        td = link_to 'Destroy', news, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New News', new_news_path
+scss:
+  .news-list {
+  }

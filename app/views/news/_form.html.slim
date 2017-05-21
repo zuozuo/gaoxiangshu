@@ -2,10 +2,11 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :image, as: :file
-    = f.input :title
-    = f.input :url
-    = f.input :content
+    = f.input :image, as: :file, label: "新闻图片"
+    = f.input :title, label: "标题"
+    = f.input :url, label: "网址"
+    = f.input :content, label: "内容", input_html: {style: 'height: 300px;'}
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, value: "创建新闻"
+    span.ml30= link_to "返回", news_index_path

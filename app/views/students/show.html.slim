@@ -30,7 +30,7 @@
         p 
           span 年级：
           = @student.grade
-    .col-md-8.pt30
+    .col-md-10.pt30
       ul class="nav nav-tabs"
         li role="presentation" class="#{'active' if params[:course_status] == 'uncompleted'}"
           a href=student_path(@student, course_status: 'uncompleted')

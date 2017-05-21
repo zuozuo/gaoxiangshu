@@ -10,7 +10,7 @@
     = f.input :phone, label: "电话"
     = f.input :school, label: "学校"
     = f.input :grade, label: "年级", collection: (1..12), prompt: "选择你所在的年级"
-    = f.input :school_type, label: "学校类型", collection: ["私立学校", "公立学校", "公立学校国际部"], prompt: "选择你所在学校类型"
+    = f.input :school_type, label: "学校类型", collection: User::SchoolTypes, prompt: "选择你所在学校类型"
     = f.input :age, label: "年龄", collection: (6..22), prompt: "选择年龄"
 
   .form-actions
