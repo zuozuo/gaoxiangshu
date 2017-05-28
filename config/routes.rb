@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :lessions
   get 'teachers/show'
 
   get 'teachers/edit'
@@ -12,6 +13,7 @@ Rails.application.routes.draw do
   resources :users
   resources :students, only: [:show, :edit, :update, :index]
   resources :teachers, only: [:show, :edit, :update, :index]
+  resources :course_teachers, only: [:create, :destroy]
   get 'home/index'
   root to: 'home#index'
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }

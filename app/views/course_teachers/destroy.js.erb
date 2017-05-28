@@ -1,0 +1,10 @@
+var teacher = "<%= j render 'courses/add_teacher', t: @ct.teacher, c: @ct.course %>";
+$(teacher).appendTo($('.teacher-list-<%= @ct.course_id %> .left-teacher-list .teachers')).hide().fadeIn(500).addClass('new-added');
+$('.teacher-list-<%= @ct.course_id %> .right-teacher-list .teachers #teacher-name-<%= @ct.teacher_id %>').fadeOut(500, function(){$(this).remove()})
+
+$('.teacher-list-<%= @ct.course_id %> .left-teacher-list').stop().animate({
+  scrollTop: $('.teacher-list-<%= @ct.course_id %> .right-teacher-list')[0].scrollHeight
+}, 500);
+setTimeout(function(){
+  $('.teacher-list-<%= @ct.course_id %> .teacher-name.new-added').removeClass('new-added')
+}, 2000)

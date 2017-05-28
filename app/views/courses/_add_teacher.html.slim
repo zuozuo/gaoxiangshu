@@ -1,0 +1,4 @@
+= link_to course_teachers_path(course_id: c.id, teacher_id: t.id), method: :post, remote: true, class: 'teacher-name', id: "teacher-name-#{t.id}"
+  .pointer data-id="#{t.id}"
+    = t.name
+    = ion_icon "plus", class: 'pull-right'

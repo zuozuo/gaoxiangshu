@@ -1,21 +1,36 @@
-p#notice = notice
-
-p
-  strong Date:
-  = @course.date
-p
-  strong Length:
-  = @course.length
-p
-  strong Status:
-  = @course.status
-p
-  strong User:
-  = @course.student_id
-p
-  strong Teacher:
-  = @course.teacher_id
-
-= link_to 'Edit', edit_course_path(@course)
-'|
-= link_to 'Back', courses_path
+.container
+  .panel.panel-default.mt30
+    .panel-heading
+      .row
+        .col-md-6
+          strong
+            = @course.name
+            |（
+            = @course.length
+            | 分钟）
+          span
+            | 的老师列表
+        .col-md-6
+          = link_to "添加老师", new_course_path, class: 'btn btn-info btn-xs pull-right', role: 'button'
+    .panel-body
+      table.table.table-hover
+        thead
+          tr
+            th width='20%'
+              | 姓名
+            th width='20%'
+              | 邮箱
+            th width='20%'
+              | 电话
+            th width='20%'
+              | 性别
+            th width='20%'
+        tbody
+          - @teachers.each do |t|
+            tr
+              td= t.name
+              td= t.email
+              td= t.phone
+              td= t.gender ? "男" : "女"
+              td
+                = link_to "他的课程", teacher_path(t), target: '_blank'

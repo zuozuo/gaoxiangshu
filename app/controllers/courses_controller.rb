@@ -5,11 +5,13 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     @courses = Course.all
+    @teachers = Teacher.all.order('name').select(:id, :name)
   end
 
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @teachers = @course.teachers
   end
 
   # GET /courses/new
@@ -28,7 +30,7 @@ class CoursesController < ApplicationController
 
     respond_to do |format|
       if @course.save!
-        format.html { redirect_to @course, notice: 'Course was successfully created.' }
+        format.html { redirect_to courses_path, notice: 'Course was successfully created.' }
         format.json { render :show, status: :created, location: @course }
       else
         format.html { render :new }
@@ -42,7 +44,7 @@ class CoursesController < ApplicationController
   def update
     respond_to do |format|
       if @course.update(course_params)
-        format.html { redirect_to @course, notice: 'Course was successfully updated.' }
+        format.html { redirect_to courses_path, notice: 'Course was successfully updated.' }
         format.json { render :show, status: :ok, location: @course }
       else
         format.html { render :edit }
@@ -69,8 +71,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(
-        :date, :length, :status, :student_id, :teacher_id, :name, :url
-      )
+      params.require(:course).permit(:name, :length)
     end
 end

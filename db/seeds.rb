@@ -37,3 +37,20 @@ require 'ffaker'
 #   password: 'password',
 #   gender: true
 # )
+
+# teachers = Teachers.limit(10)
+# Student.all.each do |stu|
+#   stu.lessions.create!(
+#     teacher_id: teachers[rand(11)].id,
+#     courses
+#   )
+# end
+
+
+
+t = Teacher.last
+Course.all.each do |c|
+  (5..10).to_a[rand(7)].times do |i|
+    c.teachers << Teacher.find(t.id-i-rand(90))
+  end
+end

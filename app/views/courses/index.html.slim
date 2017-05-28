@@ -1,29 +1,113 @@
-h1 Listing courses
-
-table
-  thead
-    tr
-      th Date
-      th Length
-      th Status
-      th User
-      th Teacher
-      th
-      th
-      th
-
-  tbody
-    - @courses.each do |course|
-      tr
-        td = course.date
-        td = course.length
-        td = course.status
-        td = course.student_id
-        td = course.teacher_id
-        td = link_to 'Show', course
-        td = link_to 'Edit', edit_course_path(course)
-        td = link_to 'Destroy', course, data: { confirm: 'Are you sure?' }, method: :delete
-
-br
-
-= link_to 'New Course', new_course_path
+.container
+  .panel.panel-default.mt30.mb40
+    .panel-heading
+      .row
+        .col-md-2
+          strong 课程列表
+        .col-md-8 style='padding-left: 0px;'
+          strong 授课老是（双击头像删除）
+        .col-md-2
+          = link_to "添加新课程", new_course_path, class: 'btn btn-info btn-xs pull-right', role: 'button'
+    .panel-body style='padding-top:0px'
+      - @courses.each do |c|
+        .row.course-info
+          .col-md-2
+            span
+              p
+                strong= c.name
+              p
+                = c.length
+                | 分钟
+          .col-md-10
+            .row
+              - teachers = c.teachers.select("course_teachers.id as ct_id", "users.id", "users.name").group('users.id')
+              - teachers.each do |t|
+                .thumbnail.pull-left.mr17.pointer[title="#{t.name}" style='width: 50px' data-toggle='tooltip']
+                  = image_tag t.avatar.url(:original), size: '50x50'
+              .thumbnail.pull-left.mr17.pointer[title="添加老师" style='width: 50px;height: 50px' data-toggle='tooltip']
+                div.center style='font-size: 30px;width:100%;height:100%' data-toggle='modal' data-target="#myModal-#{c.id}"
+                  = ion_icon :plus
+              .modal.fade[tabindex="-1" role="dialog" aria-labelledby="myModalLabel" id="myModal-#{c.id}"]
+                .modal-dialog[role="document"]
+                  .modal-content
+                    .modal-header
+                      button.close[type="button" data-dismiss="modal" aria-label="Close"]
+                        span[aria-hidden="true"]
+                          | ×
+                      h4#myModalLabel.modal-title
+                        = "#{c.name}"
+                    .modal-body.no-padding
+                      .row class="teacher-list teacher-list-#{c.id}"
+                        .col-md-5
+                          .title
+                            strong 未添加老师
+                          .left-teacher-list
+                            .teachers
+                              - ids = teachers.pluck(:id)
+                              = render partial: 'add_teacher', collection: @teachers.reject{|t| ids.include?(t.id)}, as: :t, locals: {c: c}
+                        .col-md-2.next-divider
+                          div.next-icon.pointer= image_tag 'next.png'
+                        .col-md-5 
+                          .title
+                            strong 已添加老师
+                          .right-teacher-list
+                            .teachers
+                              - teachers.each do |t|
+                                = render 'remove_teacher', ct_id: t.ct_id, t: t
+                    .modal-footer
+                      button.btn.btn-default[type="button" data-dismiss="modal"]
+                        | 取消
+                      = link_to '保存', courses_path, class: 'btn btn-primary'
+                
+scss:
+  .teacher-list {
+    .title {
+      padding: 15px 20px;
+    }
+    padding: 0px 10px;
+    .teachers {
+      padding: 0px 10px 60px;
+      .teacher-name.new-added {
+        border: 1px dashed #888;
+      }
+      .teacher-name {
+        display: block;
+        border: 1px dashed #fff;
+        padding: 10px;
+        color: #333333;
+        .ion-plus, .ion-close {
+          font-size: 20px;
+          margin-top: -4px;
+          display: none;
+        }
+        &:hover {
+          text-decoration: none;
+          border-color: #888;
+          .ion-plus, .ion-close {
+            display: inline;
+          }
+        }
+      }
+    }
+  }
+  .left-teacher-list, .right-teacher-list {
+    height: 500px;
+    overflow: scroll;
+  }
+  .course-info {
+    border-bottom: 1px solid #ccc;
+    padding-top: 20px;
+    &:last-child {
+      border: 0px;
+    }
+  }
+  .next-divider {
+    height: 550px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+    padding-top: 234px;
+    .next-icon {
+      width: 32px;
+      margin: auto;
+    }
+  }

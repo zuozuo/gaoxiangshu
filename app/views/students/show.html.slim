@@ -32,11 +32,11 @@
           = @student.grade
     .col-md-10.pt30
       ul class="nav nav-tabs"
-        li role="presentation" class="#{'active' if params[:course_status] == 'uncompleted'}"
-          a href=student_path(@student, course_status: 'uncompleted')
+        li role="presentation" class="#{'active' if params[:lession_status] == 'uncompleted'}"
+          a href=student_path(@student, lession_status: 'uncompleted')
             | 未上课程
-        li role="presentation" class="#{'active' if params[:course_status] == 'completed'}"
-          a href=student_path(@student, course_status: 'completed')
+        li role="presentation" class="#{'active' if params[:lession_status] == 'completed'}"
+          a href=student_path(@student, lession_status: 'completed')
             | 已完成课程
       table.table.table-hover
         thead
@@ -51,14 +51,14 @@
               | 老师
             th width="20%"
         tbody
-          - @courses.each do |c|
+          - @lessions.each do |l|
             tr
-              td= c.name
+              td= l.course.name
               td
-                strong= c.date.strftime("%m/%d %H:%M")
+                strong= l.start_at.strftime("%m/%d %H:%M")
               td
-                = c.length
+                = l.course.length
                 | 分钟
-              td= c.teacher.name
+              td= l.teacher.name
               td
-                = link_to "去上课", c.url, target: '_blank'
+                = link_to "去上课", l.url, target: '_blank'

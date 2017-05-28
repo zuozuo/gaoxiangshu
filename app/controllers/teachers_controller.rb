@@ -6,11 +6,15 @@ class TeachersController < ApplicationController
   end
 
   def show
-    params[:course_status] ||= 'uncompleted'
-    if ['uncompleted', "completed"].include?(params[:course_status])
-      @courses = @teacher.courses.order('date').includes(:student).send(params[:course_status])
+    params[:lession_status] ||= 'uncompleted'
+    if ['uncompleted', "completed"].include?(params[:lession_status])
+      @lessions = @teacher
+        .lessions
+        .order('start_at')
+        .includes(:student, :course)
+        .send(params[:lession_status])
     else
-      @courses = []
+      @lessions = []
     end
   end
 

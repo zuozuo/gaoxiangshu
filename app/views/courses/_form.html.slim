@@ -2,13 +2,8 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :name
-    = f.input :date
-    = f.input :length
-    = f.input :status
-    = f.input :student_id
-    = f.input :teacher_id
-    = f.input :url
+    = f.input :name, label: "课程名称"
+    = f.input :length, label: "课程时长/分钟"
 
   .form-actions
-    = f.button :submit
+    = f.button :submit, value: "提交"

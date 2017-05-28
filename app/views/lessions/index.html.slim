@@ -1,0 +1,29 @@
+h1 Listing lessions
+
+table
+  thead
+    tr
+      th Course
+      th Student
+      th Teacher
+      th Start at
+      th Status
+      th
+      th
+      th
+
+  tbody
+    - @lessions.each do |lession|
+      tr
+        td = lession.course_id
+        td = lession.student_id
+        td = lession.teacher_id
+        td = lession.start_at
+        td = lession.status
+        td = link_to 'Show', lession
+        td = link_to 'Edit', edit_lession_path(lession)
+        td = link_to 'Destroy', lession, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Lession', new_lession_path

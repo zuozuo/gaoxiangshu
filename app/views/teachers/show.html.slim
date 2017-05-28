@@ -20,33 +20,33 @@
           = @teacher.gender ? "Male" : "Female"
     .col-md-10.pt30
       ul class="nav nav-tabs"
-        li role="presentation" class="#{'active' if params[:course_status] == 'uncompleted'}"
-          a href=teacher_path(@teacher, course_status: 'uncompleted')
-            | Ucompleted Courses
-        li role="presentation" class="#{'active' if params[:course_status] == 'completed'}"
-          a href=teacher_path(@teacher, course_status: 'completed')
-            | Completed Courses
+        li role="presentation" class="#{'active' if params[:lession_status] == 'uncompleted'}"
+          a href=teacher_path(@teacher, lession_status: 'uncompleted')
+            | Ucompleted Lessions
+        li role="presentation" class="#{'active' if params[:lession_status] == 'completed'}"
+          a href=teacher_path(@teacher, lession_status: 'completed')
+            | Completed Lessions
       table.table.table-hover
         thead
           tr
             th width="20%"
-              | Course Name
+              | Lession Name
             th width="20%"
-              | Course Time
+              | Lession Time
             th width="20%"
-              | Course Duration
+              | Lession Duration
             th width="20%"
               | Student Name
             th width="20%"
         tbody
-          - @courses.each do |c|
+          - @lessions.each do |l|
             tr
-              td= c.name
+              td= l.course.name
               td
-                strong= c.date.strftime("%m/%d %H:%M")
+                strong= l.start_at.strftime("%m/%d %H:%M")
               td
-                = c.length
+                = l.course.length
                 | minutes
-              td= c.student.name
+              td= l.student.name
               td
-                = link_to "Go to course", c.url, target: '_blank'
+                = link_to "Go to lession", l.url, target: '_blank'

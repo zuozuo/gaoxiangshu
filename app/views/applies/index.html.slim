@@ -1,11 +1,13 @@
 .container
-  .row
-    .col-md-12
+  .panel.panel-default.mt30
+    .panel-heading
+      strong 试听课申请人列表
+    .panel-body
       table.table.table-hover
         thead
           tr
-            th 申请人名称
-            th 申请人电话
+            th 姓名
+            th 电话
         tbody
           - @applies.each do |a|
             tr

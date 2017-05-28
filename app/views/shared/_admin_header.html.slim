@@ -7,12 +7,12 @@ header.bs-docs-nav.navbar.navbar-static-top
             = link_to "学生列表", students_path
           li class="#{'active' if params[:controller] == 'teachers'}"
             = link_to "老师列表", teachers_path
+          li class="#{'active' if params[:controller] == 'courses'}"
+            = link_to "课程列表", courses_path
           li class="#{'active' if params[:controller] == 'news'}"
             = link_to "首页新闻", news_index_path
           li class="#{'active' if params[:controller] == 'applies'}"
             = link_to "试听课申请", applies_path
-          /li.pull-right
-            = link_to "登出", destroy_user_session_path, method: :delete
         ul class="nav navbar-nav navbar-right"
           li class="dropdown"
             = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}, role: :button do

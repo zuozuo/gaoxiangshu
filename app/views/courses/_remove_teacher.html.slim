@@ -1,0 +1,4 @@
+= link_to course_teacher_path(ct_id), method: :delete, remote: true, class: 'teacher-name', id: "teacher-name-#{t.id}"
+  .pointer data-id="#{t.id}"
+    = t.name
+    = ion_icon "close", class: 'pull-right'

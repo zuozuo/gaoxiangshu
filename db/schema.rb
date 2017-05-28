@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170520171358) do
+ActiveRecord::Schema.define(version: 20170521085907) do
 
   create_table "applies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -30,19 +30,54 @@ ActiveRecord::Schema.define(version: 20170520171358) do
     t.datetime "logo_updated_at"
   end
 
+  create_table "course_students", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.integer  "count"
+    t.integer  "count_per_week"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.index ["course_id"], name: "index_course_students_on_course_id", using: :btree
+    t.index ["student_id"], name: "index_course_students_on_student_id", using: :btree
+  end
+
+  create_table "course_teachers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "course_id"
+    t.integer  "teacher_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_course_teachers_on_course_id", using: :btree
+    t.index ["teacher_id"], name: "index_course_teachers_on_teacher_id", using: :btree
+  end
+
   create_table "courses", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "date"
     t.integer  "length"
-    t.integer  "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
+  create_table "lession_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.datetime "time"
     t.integer  "student_id"
     t.integer  "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string   "name"
+  end
+
+  create_table "lessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "course_id"
+    t.integer  "student_id"
+    t.integer  "teacher_id"
+    t.date     "start_at"
+    t.integer  "status"
     t.string   "url"
-    t.index ["date"], name: "index_courses_on_date", using: :btree
-    t.index ["student_id"], name: "index_courses_on_student_id", using: :btree
-    t.index ["teacher_id"], name: "index_courses_on_teacher_id", using: :btree
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_lessions_on_course_id", using: :btree
+    t.index ["start_at"], name: "index_lessions_on_start_at", using: :btree
+    t.index ["student_id"], name: "index_lessions_on_student_id", using: :btree
+    t.index ["teacher_id"], name: "index_lessions_on_teacher_id", using: :btree
   end
 
   create_table "news", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

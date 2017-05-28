@@ -1,0 +1,12 @@
+= simple_form_for(@lession) do |f|
+  = f.error_notification
+
+  .form-inputs
+    = f.input :course_id
+    = f.input :student_id
+    = f.input :teacher_id
+    = f.input :start_at
+    = f.input :status
+
+  .form-actions
+    = f.button :submit

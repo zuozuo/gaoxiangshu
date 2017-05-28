@@ -1,0 +1,21 @@
+p#notice = notice
+
+p
+  strong Course:
+  = @lession.course_id
+p
+  strong Student:
+  = @lession.student_id
+p
+  strong Teacher:
+  = @lession.teacher_id
+p
+  strong Start at:
+  = @lession.start_at
+p
+  strong Status:
+  = @lession.status
+
+= link_to 'Edit', edit_lession_path(@lession)
+'|
+= link_to 'Back', lessions_path

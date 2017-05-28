@@ -1,7 +1,8 @@
 class Course < ApplicationRecord
-  belongs_to :student
-  belongs_to :teacher
+  has_many :lessions
+  has_many :course_teachers
+  has_many :teachers, through: :course_teachers
 
-  scope :uncompleted, -> { where('status' => 0) }
-  scope :completed, -> { where('status' => 1) }
+  def teachers=(teachers)
+  end
 end
