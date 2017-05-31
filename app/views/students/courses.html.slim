@@ -1,0 +1,4 @@
+.stu-courses.row.pt30
+  = render partial: "course", collection: @course_students, as: :cs
+  .col-xs-6.col-md-3.center
+    = link_to "添加新课程", new_student_course_student_path(@student), class: 'btn btn-success'

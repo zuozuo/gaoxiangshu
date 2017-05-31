@@ -4,13 +4,17 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  UserType = [
-    student: 0,
-    parent: 1,
-    teacher: 2,
-    service: 3,
-    admin: 4
-  ]
+  UserTypes = [ :student, :parent, :teacher, :customer_service, :admin ]
+
+  def operator?
+    UserTypes.index(self.type.underscore.to_sym) >= 3
+  end
+
+  UserTypes.each do |type|
+    define_method "#{type}?" do
+      self.type.underscore == type.to_s
+    end
+  end
 
   SchoolTypes = ["私立学校", "公立学校", "公立学校国际部"];
 

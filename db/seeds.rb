@@ -7,36 +7,41 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'ffaker'
 
-# 100.times do |i|
-#   Student.create(
-#     name: FFaker::Name.name,
-#     email: FFaker::Internet.email,
-#     password: 'password',
-#     phone: FFaker::PhoneNumber.phone_number,
-#     age: (6..22).to_a[rand(16)],
-#     gender: rand(2),
-#     school: FFaker::Education.school,
-#     school_type: User::SchoolTypes[rand(4)],
-#     grade: rand(13)
-#   )
-# end
-#
-# 100.times do |i|
-#   Teacher.create(
-#     name: FFaker::Name.name,
-#     email: FFaker::Internet.email,
-#     password: 'password',
-#     phone: FFaker::PhoneNumber.phone_number,
-#     gender: rand(2)
-#   )
-# end
-#
-# CustomerService.create(
-#   name: 'CustomerService',
-#   email: 'service@gaoxiangshu.com',
-#   password: 'password',
-#   gender: true
-# )
+100.times do |i|
+  Student.create(
+    name: FFaker::Name.name,
+    email: FFaker::Internet.email,
+    password: 'password',
+    phone: FFaker::PhoneNumber.phone_number,
+    age: (6..22).to_a[rand(16)],
+    gender: rand(2),
+    school: FFaker::Education.school,
+    school_type: User::SchoolTypes[rand(4)],
+    grade: rand(13)
+  )
+end
+
+Student.first.update(email: 'student@gaoxiangshu.com')
+
+20.times do |i|
+  Teacher.create(
+    name: FFaker::Name.name,
+    email: FFaker::Internet.email,
+    password: 'password',
+    phone: FFaker::PhoneNumber.phone_number,
+    gender: rand(2)
+  )
+end
+Teacher.first.update(email: 'teacher@gaoxiangshu.com')
+
+CustomerService.create(
+  name: 'CustomerService',
+  email: 'service@gaoxiangshu.com',
+  password: 'password',
+  gender: true
+)
+
+10.times { |i| Course.create( name: "高橡树课程#{i}", length: rand(4..8)*10) }
 
 # teachers = Teachers.limit(10)
 # Student.all.each do |stu|
@@ -48,9 +53,9 @@ require 'ffaker'
 
 
 
-t = Teacher.last
+s = Student.last
 Course.all.each do |c|
-  (5..10).to_a[rand(7)].times do |i|
-    c.teachers << Teacher.find(t.id-i-rand(90))
+  (5..10).to_a[rand(6)].times do |i|
+    c.students << Student.find(s.id-i-rand(90))
   end
 end

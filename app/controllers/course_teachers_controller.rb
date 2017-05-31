@@ -7,7 +7,9 @@ class CourseTeachersController < ApplicationController
 
     respond_to do |format|
       if @ct.save!
-        format.html { redirect_to courses_path, notice: 'Course Teacher was successfully created.' }
+        format.html do
+          redirect_to courses_path, notice: 'Course Teacher was successfully created.'
+        end
         format.js { render :create, status: :created }
       else
         format.html { render :new }

@@ -10,13 +10,23 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170521085907) do
+ActiveRecord::Schema.define(version: 20170531185900) do
 
   create_table "applies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
     t.string   "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "availible_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.integer  "day"
+    t.integer  "teacher_id"
+    t.time     "start_at"
+    t.time     "end_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id"], name: "index_availible_times_on_teacher_id", using: :btree
   end
 
   create_table "colleges", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -35,10 +45,14 @@ ActiveRecord::Schema.define(version: 20170521085907) do
     t.integer  "student_id"
     t.integer  "count"
     t.integer  "count_per_week"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.integer  "teacher_id"
+    t.integer  "total_lessions", default: 0
+    t.date     "start_date"
     t.index ["course_id"], name: "index_course_students_on_course_id", using: :btree
     t.index ["student_id"], name: "index_course_students_on_student_id", using: :btree
+    t.index ["teacher_id"], name: "index_course_students_on_teacher_id", using: :btree
   end
 
   create_table "course_teachers", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -58,11 +72,19 @@ ActiveRecord::Schema.define(version: 20170521085907) do
   end
 
   create_table "lession_times", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.datetime "time"
+    t.integer  "course_student_id"
+    t.string   "day"
+    t.time     "start_at"
+    t.time     "end_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
     t.integer  "student_id"
     t.integer  "teacher_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "course_id"
+    t.index ["course_id"], name: "index_lession_times_on_course_id", using: :btree
+    t.index ["course_student_id"], name: "index_lession_times_on_course_student_id", using: :btree
+    t.index ["student_id"], name: "index_lession_times_on_student_id", using: :btree
+    t.index ["teacher_id"], name: "index_lession_times_on_teacher_id", using: :btree
   end
 
   create_table "lessions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|

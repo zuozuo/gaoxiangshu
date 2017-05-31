@@ -5,17 +5,17 @@ body.devise {
 .login-form {
   margin: auto;
   margin-top: 100px;
-  width: 600px;
+  width: 460px;
   background: #fff;
   .title {
     text-align: center;
     padding: 20px;
     color: #fff;
-    font-size: 20px;
-    background: #03a9f4;
+    font-size: 18px;
+    background: #444;
   }
   .form-content {
-    padding: 40px 100px 100px;
+    padding: 60px 80px;
     input.string, input.password {
       margin-top: 20px;
       margin-bottom: 20px;

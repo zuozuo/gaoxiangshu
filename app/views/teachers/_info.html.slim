@@ -1,0 +1,17 @@
+.thumbnail.avatar.pull-left
+  = image_tag @teacher.avatar.url(:original), size: "100x100"
+= link_to "edit", edit_teacher_path(@teacher), class: 'pull-right', target: '_blank'
+.clearfix
+.info
+  p 
+    span Name：
+    span= @teacher.name
+  p 
+    span Email：
+    span= @teacher.email
+  p 
+    span Phone：
+    span= @teacher.phone
+  p 
+    span Gender：
+    = @teacher.gender ? "Male" : "Female"

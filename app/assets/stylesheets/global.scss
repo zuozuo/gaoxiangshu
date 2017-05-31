@@ -59,3 +59,20 @@ html,body { height: 100%; margin: 0px; padding: 0px; }
 .center {
 	text-align: center;
 }
+header.bs-docs-nav.navbar.navbar-static-top {
+	background-color: #333;
+	li a {
+		&:hover {
+			background-color: #616161;
+		}
+	}
+	li.active a, .nav .open a {
+		background-color: #616161 !important;
+	}
+	.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+		color: #fff;
+	}
+}
+.hidden {
+  display: none;
+}

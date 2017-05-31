@@ -1,52 +1,23 @@
-.container.user-info
-  .row.fullheight
-    .col-md-2.left-sidebar.fullheight.pt30
-      .thumbnail.avatar.pull-left
-        = image_tag @teacher.avatar.url(:original), size: "100x100"
-      = link_to "edit", edit_teacher_path(@teacher), class: 'pull-right', target: '_blank'
-      .clearfix
-      .info
-        p 
-          span Name：
-          span= @teacher.name
-        p 
-          span Email：
-          span= @teacher.email
-        p 
-          span Phone：
-          span= @teacher.phone
-        p 
-          span Gender：
-          = @teacher.gender ? "Male" : "Female"
-    .col-md-10.pt30
-      ul class="nav nav-tabs"
-        li role="presentation" class="#{'active' if params[:lession_status] == 'uncompleted'}"
-          a href=teacher_path(@teacher, lession_status: 'uncompleted')
-            | Ucompleted Lessions
-        li role="presentation" class="#{'active' if params[:lession_status] == 'completed'}"
-          a href=teacher_path(@teacher, lession_status: 'completed')
-            | Completed Lessions
-      table.table.table-hover
-        thead
-          tr
-            th width="20%"
-              | Lession Name
-            th width="20%"
-              | Lession Time
-            th width="20%"
-              | Lession Duration
-            th width="20%"
-              | Student Name
-            th width="20%"
-        tbody
-          - @lessions.each do |l|
-            tr
-              td= l.course.name
-              td
-                strong= l.start_at.strftime("%m/%d %H:%M")
-              td
-                = l.course.length
-                | minutes
-              td= l.student.name
-              td
-                = link_to "Go to lession", l.url, target: '_blank'
+table.table.table-hover
+  thead
+    tr
+      th width="20%"
+        | Lession Name
+      th width="20%"
+        | Lession Time
+      th width="20%"
+        | Lession Duration
+      th width="20%"
+        | Student Name
+      th width="20%"
+  tbody
+    - @lessions.each do |l|
+      tr
+        td= l.course.name
+        td
+          strong= l.start_at.strftime("%m/%d %H:%M")
+        td
+          = l.course.length
+          | minutes
+        td= l.student.name
+        td= link_to "Go to lession", l.url, target: '_blank'

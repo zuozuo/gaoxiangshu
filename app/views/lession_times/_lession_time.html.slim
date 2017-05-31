@@ -1,0 +1,13 @@
+.lession-time style="padding: 5px 0px;" data-lt="#{[@lession_time.day, @lession_time.start_at.strftime("%H:%M:%S"), @lession_time.end_at.strftime("%H:%M:%S")]}"
+  strong= LessionTime::WeekDays[@lession_time.day.to_i-1].first
+  span.ml30= @lession_time.start_at.strftime("%H:%M")
+  span.ml30 到
+  span.ml30= @lession_time.end_at.strftime("%H:%M")
+  span.pull-right.show-tooltip.delete-lession-time title="删除上课时间"
+    = ion_icon "ios-close-outline", class: 'pointer'
+
+javascript:
+  $('.show-tooltip').tooltip()
+  $('.delete-lession-time').click(function(e){
+    $(this).parent().remove()
+  })

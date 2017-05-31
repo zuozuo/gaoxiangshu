@@ -1,0 +1,10 @@
+.col-xs-6.col-md-3
+  .thumbnail style='padding: 20px;'
+    h4.mb17
+      = AvailibleTime::WeekDays.key(at.day.to_i)
+      = link_to [@teacher, at], method: :delete, data: {toggle: 'tooltip', confirm: "Are you sure to delete this?"}, title: "delete this item" do
+        = ion_icon "ios-close-outline", class: 'pull-right pointer'
+    h5
+      = at.start_at.strftime("%H:%M %p")
+      |  ~ 
+      = at.end_at.strftime("%H:%M %p")

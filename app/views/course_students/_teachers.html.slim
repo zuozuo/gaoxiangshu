@@ -1,0 +1,11 @@
+.form-group.select.optional.course_student_teacher_id
+  label class="control-label select optional" for="course_student_teacher_id"
+    | 选择课程【
+    = @course.name
+    | 】的老师
+  - prompt = @teachers.present? ? "选择老师" : "没有找到时间匹配的授课老师, 请重新选择上课时间"
+  = select_tag "course_student[teacher_id]", options_for_select(@teachers), class: 'form-control select optional', id: :course_student_teacher_id, prompt: prompt
+
+- if @teachers.blank?
+  javascript:
+    alert("没有找到时间匹配的授课老师, 请重新选择合适的上课时间")

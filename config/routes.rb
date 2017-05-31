@@ -1,19 +1,35 @@
 Rails.application.routes.draw do
+  get 'lession_times/create'
+
+  get 'lession_times/show'
+
+  get 'lession_times/index'
+
+  get 'lession_times/edit'
+
+  get 'lession_times/update'
+
+  get 'lession_times/new'
+
   resources :lessions
-  get 'teachers/show'
-
-  get 'teachers/edit'
-
-  get 'teachers/update'
-
-  resources :courses
   resources :applies
   resources :colleges
   resources :news
   resources :users
-  resources :students, only: [:show, :edit, :update, :index]
-  resources :teachers, only: [:show, :edit, :update, :index]
+  resources :students, only: [:show, :edit, :update, :index] do
+    resources :course_students
+    resources :lession_times
+    get :courses
+  end
+  resources :teachers, only: [:show, :edit, :update, :index] do
+    get :courses
+    resources :availible_times
+  end
+
   resources :course_teachers, only: [:create, :destroy]
+  resources :courses do
+    get :teachers
+  end
   get 'home/index'
   root to: 'home#index'
   devise_for :users, path: 'auth', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }

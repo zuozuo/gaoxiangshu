@@ -1,8 +1,15 @@
 class TeachersController < ApplicationController
   before_action :set_teacher, only: [:show, :edit, :update]
 
+  layout 'teacher', only: [:show, :courses]
+
   def index
     @teachers = Teacher.all.order('id desc')
+  end
+
+  def courses
+    @teacher = Teacher.find(params[:teacher_id])
+    @courses = @teacher.courses
   end
 
   def show

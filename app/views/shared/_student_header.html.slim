@@ -1,0 +1,8 @@
+header.bs-docs-nav.navbar.navbar-static-top
+  .container
+    .navbar-header
+      nav.collapse.navbar-collapse#bs-navbar
+        ul.nav.navbar-nav
+          li class="#{'active' if params[:controller] == current_user.type.downcase.pluralize}"
+            = link_to "我的课程", my_path
+          = link_to "登出", destroy_user_session_path, method: :delete, class: 'logout'

@@ -1,0 +1,73 @@
+.course-form.mt40
+  .add-lession-time.mb30
+    h4 每周上课时间
+    #lession-times.pb30
+    = link_to "添加每周上课时间", "#", id: 'add-lession-time', remote: true
+    .lession-time-form.mt17= simple_form_for([@student, @student.lession_times.new], remote: true) do |f|
+      .form-inputs
+        = f.input :day, label: "每周上课时间", collection: LessionTime::WeekDays, prompt: "选择每周周几上课"
+        = f.input :start_at, label: "开始时间"
+        = f.input :end_at, label: "结束时间"
+      .form-actions.mt30
+        = f.button :submit, value: "提交"
+        = link_to "收起", "#", class: 'hide-lession-time-form ml40', remote: true
+  = simple_form_for([@student, @course_student]) do |f|
+    = f.error_notification
+
+    .form-inputs
+      = f.input :course_id, label: "选择课程", collection: Course.all.select(:name, :id), prompt: "选择课程"
+      = link_to '', '#', remote: true, class: 'hidden get_teachers'
+      #select-teachers
+        = f.input :teacher_id, collection: [], label: "选择老师", prompt: "选择老师之前要先选好课程"
+      = f.input :total_lessions, label: "总课时数"
+      = f.input :start_date, label: "开始上课日期"
+      = f.input :ltimes, as: :hidden
+    .form-actions.mt30
+      = f.button :submit, value: "提交", id: "create-course-student"
+      = link_to "返回", student_courses_path(@student), class: 'ml40'
+
+javascript:
+  $('.lession-time-form').hide()
+
+  $('.hide-lession-time-form').click(function(e) {
+    $('.lession-time-form').slideUp()
+  })
+
+  $("#create-course-student").click(function(e){
+    var datas = []
+    $('.lession-time').map(function (index, item) {
+      datas.push($(item).data('lt'))
+    })
+    var params = JSON.stringify(datas)
+    $("#course_student_ltimes").val(params)
+  })
+  $('#course_student_teacher_id').change(function(e){
+    if (!$('#course_student_course_id').val()) {
+      $(this).val('')
+      alert("请先选择课程")
+    }
+  })
+  $('#course_student_course_id').change(function (e) {
+    var val = $(e.target).val()
+    if (val) {
+      var datas = []
+      $('.lession-time').map(function (index, item) {
+        datas.push($(item).data('lt'))
+      })
+      if (datas.length) {
+        var params = JSON.stringify(datas)
+        if (val) {
+          $('.get_teachers').prop('href', "/courses/" + val + "/teachers" + "?data=" + params).click()
+        } else {
+          $('#select-teachers').html('')
+        }
+      } else {
+        alert("请先添加上课时间")
+        $(this).val('')
+      }
+    }
+  })
+
+  $('#add-lession-time').click((e) =>
+    $('.lession-time-form').slideDown()
+  )

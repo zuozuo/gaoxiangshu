@@ -1,0 +1,29 @@
+.thumbnail.avatar.pull-left
+  = image_tag @student.avatar.url(:original), size: "100x100"
+= link_to "编辑", edit_student_path(@student), class: 'pull-right', target: '_blank'
+.clearfix
+.info
+  p 
+    span 姓名：
+    span= @student.name
+  p 
+    span 邮箱：
+    span= @student.email
+  p 
+    span 电话：
+    span= @student.phone
+  p 
+    span 年龄：
+    span= @student.age
+  p 
+    span 性别：
+    = @student.gender ? "男" : "女"
+  p 
+    span 学校：
+    = @student.school
+  p 
+    span 学校类型：
+    = @student.school_type
+  p 
+    span 年级：
+    = @student.grade

@@ -1,0 +1,14 @@
+ul class="nav nav-tabs"
+  li role="presentation" class="#{'active' if params[:lession_status] == 'uncompleted'}"
+    a href=student_path(@student, lession_status: 'uncompleted')
+      | 未完成课时
+  li role="presentation" class="#{'active' if params[:lession_status] == 'completed'}"
+    a href=student_path(@student, lession_status: 'completed')
+      | 已完成课时
+  li role="presentation" class="#{'active' if params[:action] == 'courses'}"
+    a href=student_courses_path(@student)
+      | 课程列表
+  - if params[:controller] == 'course_students'
+    li.active role="presentation"
+      a href=new_student_course_student_path(@student)
+        | 添加新课程

@@ -1,0 +1,13 @@
+ul class="nav nav-tabs"
+  li role="presentation" class="#{'active' if params[:lession_status] == 'uncompleted'}"
+    a href=teacher_path(@teacher, lession_status: 'uncompleted')
+      | Ucompleted Lessions
+  li role="presentation" class="#{'active' if params[:lession_status] == 'completed'}"
+    a href=teacher_path(@teacher, lession_status: 'completed')
+      | Completed Lessions
+  li role="presentation" class="#{'active' if params[:action] == 'courses'}"
+    a href=teacher_courses_path(@teacher)
+      | My Courses
+  li role="presentation" class="#{'active' if params[:controller] == 'availible_times'}"
+    a href=teacher_availible_times_path(@teacher)
+      | Setting Availible Time

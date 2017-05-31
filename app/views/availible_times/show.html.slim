@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Day:
+  = @availible_time.day
+p
+  strong Start at:
+  = @availible_time.start_at
+p
+  strong End at:
+  = @availible_time.end_at
+
+= link_to 'Edit', edit_availible_time_path(@availible_time)
+'|
+= link_to 'Back', availible_times_path

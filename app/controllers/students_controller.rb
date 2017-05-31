@@ -1,8 +1,15 @@
 class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update]
+  layout 'student', only: [:show, :courses]
 
   def index
     @students = Student.all.order('id desc')
+  end
+
+  def courses
+    @student = Student.find(params[:student_id])
+    @course_students = @student.course_students.includes(:teacher, :course, :lession_times)
+    # @courses = @student.courses
   end
 
   def show
