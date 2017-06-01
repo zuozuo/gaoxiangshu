@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   end
   resources :teachers, only: [:show, :edit, :update, :index] do
     get :courses
+    get :students
     resources :availible_times
   end
 

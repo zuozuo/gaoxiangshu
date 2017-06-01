@@ -1,5 +1,5 @@
 class TeachersController < ApplicationController
-  before_action :set_teacher, only: [:show, :edit, :update]
+  before_action :set_teacher, only: [:show, :edit, :update, :students, :courses]
 
   layout 'teacher', only: [:show, :courses]
 
@@ -7,8 +7,11 @@ class TeachersController < ApplicationController
     @teachers = Teacher.all.order('id desc')
   end
 
+  def students
+    @students = @teacher.students
+  end
+
   def courses
-    @teacher = Teacher.find(params[:teacher_id])
     @courses = @teacher.courses
   end
 
@@ -50,7 +53,7 @@ class TeachersController < ApplicationController
 
     # Use callbacks to share common setup or constraints between actions.
     def set_teacher
-      @teacher = Teacher.find(params[:id])
+      @teacher = Teacher.find(params[:id] || params[:teacher_id])
     end
   
 end

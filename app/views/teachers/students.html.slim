@@ -1,0 +1,37 @@
+.container
+  .row
+    .col-md-12
+      table.table.table-hover
+        thead
+          tr
+            th width=200
+              | Name
+            th width=200
+              | Email
+            th width=200
+              | Phone
+            th width=80
+              | Age
+            th width=80
+              | Gender
+            th width=300
+              | School
+            th width=400
+              | Schoool Type
+            th width=100
+              | Grade
+            th width=200
+        tbody
+          - @students.each do |s|
+            tr
+              td= link_to s.name, student_path(s)
+              td= s.email
+              td= s.phone
+              td= s.age
+              td= s.gender ? "Male" : "Female"
+              td= s.school
+              td= s.school_type
+              td
+                = s.grade
+              td
+                = link_to "#{s.gender ? 'His' : 'Her'} Courses", student_path(s), target: '_blank'

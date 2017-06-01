@@ -1,8 +1,19 @@
 header.bs-docs-nav.navbar.navbar-static-top
   .container
-    .navbar-header
+    .navbar-header style='width:100%'
       nav.collapse.navbar-collapse#bs-navbar
         ul.nav.navbar-nav
           li class="#{'active' if params[:controller] == current_user.type.downcase.pluralize}"
             = link_to "我的课程", my_path
-          = link_to "登出", destroy_user_session_path, method: :delete, class: 'logout'
+        ul class="nav navbar-nav navbar-right"
+          li class="dropdown"
+            = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}, role: :button do
+              span= current_user.name
+              span class="caret"
+            ul class="dropdown-menu"
+              li= link_to "编辑个人信息", edit_student_path(current_user)
+              li= link_to "登出", destroy_user_session_path, method: :delete
+scss:
+  header.bs-docs-nav.navbar.navbar-static-top .dropdown-menu > li > a:hover, header.bs-docs-nav.navbar.navbar-static-top .dropdown-menu > li > a:focus {
+    color: #ccc;
+  }
