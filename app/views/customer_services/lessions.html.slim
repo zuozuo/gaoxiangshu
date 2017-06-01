@@ -1,15 +1,17 @@
 table.table.table-hover
   thead
     tr
-      th width="20%"
+      th
         | 课程名称
-      th width="20%"
+      th
         | 上课时间
-      th width="20%"
+      th
         | 课程时长
-      th width="20%"
+      th
+        | 学生
+      th
         | 老师
-      th width="20%"
+      th
   tbody
     - @lessions.each do |l|
       tr
@@ -19,6 +21,8 @@ table.table.table-hover
         td
           = l.course.length
           | 分钟
+        td
+          = link_to l.student.name, l.student, target: '_blank'
         td
           = link_to l.teacher.name, l.teacher, target: '_blank'
         td

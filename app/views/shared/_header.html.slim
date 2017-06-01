@@ -1,4 +1,1 @@
-- if current_user.operator?
-  = render 'shared/admin_header'
-- else
-  = render 'shared/student_header'
+= render "shared/#{current_user.type.underscore}_header"

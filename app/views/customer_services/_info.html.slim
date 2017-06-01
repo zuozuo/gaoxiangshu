@@ -1,0 +1,17 @@
+.thumbnail.avatar.pull-left
+  = image_tag @customer_service.avatar.url(:original), size: "100x100"
+= link_to "编辑", edit_student_path(@customer_service), class: 'pull-right', target: '_blank'
+.clearfix
+.info
+  p 
+    span 姓名：
+    span= @customer_service.name
+  p 
+    span 邮箱：
+    span= @customer_service.email
+  p 
+    span 电话：
+    span= @customer_service.phone
+  p 
+    span 年龄：
+    span= @customer_service.age

@@ -10,4 +10,11 @@ html
     - if current_user
       = render 'shared/header'
     .container.container-fluid.fullheight
-      = yield
+      .container.user-info
+        .row.fullheight
+          .col-md-2.left-sidebar.fullheight.pt30
+            = render "customer_services/info"
+          .col-md-10.pt30
+            = render "customer_services/tabs"
+            .student-page
+              = yield

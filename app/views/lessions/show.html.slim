@@ -1,21 +1,24 @@
-p#notice = notice
-
-p
-  strong Course:
-  = @lession.course_id
-p
-  strong Student:
-  = @lession.student_id
-p
-  strong Teacher:
-  = @lession.teacher_id
-p
-  strong Start at:
-  = @lession.start_at
-p
-  strong Status:
-  = @lession.status
-
-= link_to 'Edit', edit_lession_path(@lession)
-'|
-= link_to 'Back', lessions_path
+.row
+  .col-md-3
+  .col-md-6.pt40
+    .well
+      h4 = @lession.course.name
+      br
+      p
+        span Teacher:
+        span.ml40= link_to @lession.teacher.name, @lession.teacher
+      p
+        span Student:
+        span.ml40= link_to @lession.student.name, @lession.student
+      - if current_user.student?
+        p
+          span.mr40 Link to webex meeting room:
+          = link_to "Join the meeting", @lession.join_url, target: '_blank'
+      - else
+        p
+          span.mr40 Link to host a webex meeting room:
+          = link_to "Host a meeting", @lession.host_url, target: '_blank'
+        p
+          span.mr40 Link to join the webex meeting room:
+          = link_to "Join the meeting", @lession.join_url, target: '_blank'
+  .col-md-3

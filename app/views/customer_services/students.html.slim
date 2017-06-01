@@ -1,0 +1,38 @@
+.container
+  .row
+    .col-md-12
+      table.table.table-hover
+        thead
+          tr
+            th width=200
+              | 姓名
+            th width=200
+              | 邮箱
+            th width=200
+              | 电话
+            th width=80
+              | 年龄
+            th width=80
+              | 性别
+            th width=300
+              | 学校
+            th width=100
+              | 学校类型
+            th width=100
+              | 年级
+            th width=100
+        tbody
+          - @students.each do |s|
+            tr
+              td= link_to s.name, student_path(s)
+              td= s.email
+              td= s.phone
+              td= s.age
+              td= s.gender ? "男" : "女"
+              td= s.school
+              td= s.school_type
+              td
+                = s.grade
+                | 年级
+              td
+                = link_to "他的课程", student_path(s), target: '_blank'

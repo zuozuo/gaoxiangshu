@@ -71,3 +71,6 @@ gem "select2-rails"
 gem 'capistrano-rvm'
 gem 'x-editable-rails'
 gem "font-ionicons-rails"
+gem 'webex_xml_api', git: "git@github.com:zuozuo/webex_xml_api.git"
+gem 'whenever', :require => false
+gem 'config'

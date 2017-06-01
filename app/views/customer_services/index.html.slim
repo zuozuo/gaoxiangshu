@@ -1,0 +1,21 @@
+.container
+  .row
+    .col-md-12
+      table.table.table-hover
+        thead
+          tr
+            th width=200
+              | 姓名
+            th width=200
+              | 邮箱
+            th width=200
+              | 电话
+            th width=200
+              | 他的学生
+        tbody
+          - @customer_services.each do |cs|
+            tr
+              td= link_to cs.name, cs
+              td= cs.email
+              td= cs.phone
+              td= link_to "他负责的学生", cs

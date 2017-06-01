@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601044345) do
+ActiveRecord::Schema.define(version: 20170601162819) do
 
   create_table "applies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -94,10 +94,14 @@ ActiveRecord::Schema.define(version: 20170601044345) do
     t.datetime "start_at"
     t.integer  "status"
     t.string   "url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                     null: false
+    t.datetime "updated_at",                     null: false
     t.datetime "end_at"
     t.integer  "day"
+    t.string   "meetingkey"
+    t.text     "join_url",         limit: 65535
+    t.text     "host_url",         limit: 65535
+    t.string   "meeting_password"
     t.index ["course_id"], name: "index_lessions_on_course_id", using: :btree
     t.index ["start_at"], name: "index_lessions_on_start_at", using: :btree
     t.index ["student_id"], name: "index_lessions_on_student_id", using: :btree

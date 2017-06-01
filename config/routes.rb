@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
+  resources :customer_services do
+    get :students
+    get :lessions
+  end
   resources :applies
   resources :colleges
   resources :news
   resources :users
+  resources :lessions, only: [:show]
   resources :students, only: [:show, :edit, :update, :index] do
     resources :lessions do
       post :generate, on: :collection
