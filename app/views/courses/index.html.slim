@@ -22,8 +22,9 @@
             .row
               - teachers = c.teachers.select("course_teachers.id as ct_id", "users.id", "users.name").group('users.id')
               - teachers.each do |t|
-                .thumbnail.pull-left.mr17.pointer[title="#{t.name}" style='width: 50px' data-toggle='tooltip']
-                  = image_tag t.avatar.url(:original), size: '50x50'
+                = link_to teacher_courses_path(t) do
+                  .thumbnail.pull-left.mr17.pointer[title="#{t.name}" style='width: 50px' data-toggle='tooltip']
+                    = image_tag t.avatar.url(:original), size: '50x50'
               .thumbnail.pull-left.mr17.pointer[title="添加老师" style='width: 50px;height: 50px' data-toggle='tooltip']
                 div.center style='font-size: 30px;width:100%;height:100%' data-toggle='modal' data-target="#myModal-#{c.id}"
                   = ion_icon :plus

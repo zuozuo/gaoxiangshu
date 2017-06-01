@@ -1,5 +1,38 @@
 class LessionsController < ApplicationController
   before_action :set_lession, only: [:show, :edit, :update, :destroy]
+  
+  def generate
+    @student = Student.find(params[:student_id])
+    if @student.lessions.empty?
+      course_student = CourseStudent.find(params[:course_student_id])
+      lession_times = course_student.lession_times.order("day")
+      length = lession_times.length
+      total = course_student.total_lessions
+      count = 0
+      (total/length + 1).times do |i|
+        lession_times.each do |lt|
+          if count < total
+            diff = lt.start_at - lt.start_at.at_beginning_of_day
+            duration = lt.end_at - lt.start_at
+            date = course_student.start_date.beginning_of_week
+            date = date + lt.day.to_i + i*7
+            start_at = date + diff.seconds
+            end_at = start_at + duration.seconds
+            Lession.create!(
+              day: lt.day,
+              end_at: end_at,
+              start_at: start_at,
+              student_id: @student.id,
+              course_id: course_student.course_id,
+              teacher_id: course_student.teacher_id
+            )
+            count += 1
+          end
+        end
+      end
+    end
+    redirect_to @student
+  end
 
   # GET /lessions
   # GET /lessions.json

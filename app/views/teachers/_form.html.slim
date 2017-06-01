@@ -3,11 +3,12 @@
 
   .form-inputs
     strong Gender：
-    = f.collection_radio_buttons :gender, [[true, 'Male'] ,[false, 'Female']], :first, :last
-    = f.input :avatar, as: :file
-    = f.input :name
-    = f.input :email
-    = f.input :phone
+    = f.collection_radio_buttons :gender, [[true, 'Male'] ,[false, 'Female']], :first, :last, required: true
+    = f.input :avatar, as: :file, required: true
+    = f.input :name, required: true
+    = f.input :email, required: true
+    = f.input :phone, required: true
+    = f.input :time_zone, required: true, prompt: "Please input your local time zone", collection: ActiveSupport::TimeZone.us_zones.map(&:name)
 
   .form-actions
     = f.button :submit, value: "Update User"

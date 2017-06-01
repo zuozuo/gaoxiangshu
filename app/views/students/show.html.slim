@@ -19,6 +19,7 @@ table.table.table-hover
         td
           = l.course.length
           | 分钟
-        td= l.teacher.name
+        td
+          = link_to l.teacher.name, l.teacher, target: '_blank'
         td
           = link_to "去上课", l.url, target: '_blank'

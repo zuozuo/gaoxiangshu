@@ -24,3 +24,5 @@
         span.mr17= lt.start_at.strftime("%H:%M")
         span.mr17 到
         = lt.end_at.strftime("%H:%M")
+    .center
+      = button_to "生成课时", generate_student_lessions_path(@student, course_student_id: cs.id), class: 'btn btn-default'

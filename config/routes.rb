@@ -1,22 +1,12 @@
 Rails.application.routes.draw do
-  get 'lession_times/create'
-
-  get 'lession_times/show'
-
-  get 'lession_times/index'
-
-  get 'lession_times/edit'
-
-  get 'lession_times/update'
-
-  get 'lession_times/new'
-
-  resources :lessions
   resources :applies
   resources :colleges
   resources :news
   resources :users
   resources :students, only: [:show, :edit, :update, :index] do
+    resources :lessions do
+      post :generate, on: :collection
+    end
     resources :course_students
     resources :lession_times
     get :courses

@@ -9,7 +9,6 @@ class StudentsController < ApplicationController
   def courses
     @student = Student.find(params[:student_id])
     @course_students = @student.course_students.includes(:teacher, :course, :lession_times)
-    # @courses = @student.courses
   end
 
   def show
@@ -18,7 +17,7 @@ class StudentsController < ApplicationController
       @lessions = @student
         .lessions
         .order('start_at')
-        .includes(:teacher, :courses)
+        .includes(:teacher, :course)
         .send(params[:lession_status])
     else
       @lessions = []

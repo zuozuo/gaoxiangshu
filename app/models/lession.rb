@@ -3,6 +3,6 @@ class Lession < ApplicationRecord
   belongs_to :teacher
   belongs_to :course
 
-  scope :uncompleted, -> { where('status' => 0) }
-  scope :completed, -> { where('status' => 1) }
+  scope :uncompleted, -> { where("end_at > '#{Time.now}' ") }
+  scope :completed, -> { where("end_at <= '#{Time.now}'") }
 end

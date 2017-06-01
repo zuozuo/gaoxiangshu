@@ -15,9 +15,10 @@ table.table.table-hover
       tr
         td= l.course.name
         td
-          strong= l.start_at.strftime("%m/%d %H:%M")
+          strong= l.start_at.in_time_zone(l.teacher.time_zone).strftime("%m/%d %H:%M")
         td
           = l.course.length
           | minutes
-        td= l.student.name
+        td
+          = link_to l.student.name, l.student, target: '_blank'
         td= link_to "Go to lession", l.url, target: '_blank'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170531185900) do
+ActiveRecord::Schema.define(version: 20170601044345) do
 
   create_table "applies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -91,11 +91,13 @@ ActiveRecord::Schema.define(version: 20170531185900) do
     t.integer  "course_id"
     t.integer  "student_id"
     t.integer  "teacher_id"
-    t.date     "start_at"
+    t.datetime "start_at"
     t.integer  "status"
     t.string   "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "end_at"
+    t.integer  "day"
     t.index ["course_id"], name: "index_lessions_on_course_id", using: :btree
     t.index ["start_at"], name: "index_lessions_on_start_at", using: :btree
     t.index ["student_id"], name: "index_lessions_on_student_id", using: :btree
@@ -140,6 +142,9 @@ ActiveRecord::Schema.define(version: 20170531185900) do
     t.string   "school"
     t.integer  "grade"
     t.string   "school_type"
+    t.string   "time_zone"
+    t.integer  "customer_service_id"
+    t.index ["customer_service_id"], name: "index_users_on_customer_service_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end

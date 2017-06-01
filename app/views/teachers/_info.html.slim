@@ -15,3 +15,13 @@
   p 
     span Gender：
     = @teacher.gender ? "Male" : "Female"
+  p 
+    span Time Zone：
+  p
+    = @teacher.time_zone
+  p
+    span Time Difference vs Beijing
+  p
+    strong
+      span.mr10= @teacher.time_difference
+      | hours
