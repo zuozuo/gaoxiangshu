@@ -8,11 +8,11 @@ class CustomerServicesController < ApplicationController
   end
 
   def students
-    @students = @customer_service.students
+    @students = @customer_service.students.order("id desc")
   end
 
   def lessions
-    @lessions = @customer_service.lessions#.upcomming
+    @lessions = @customer_service.lessions.in_a_week
   end
 
   # GET /customer_services/1

@@ -7,6 +7,7 @@ class Lession < ApplicationRecord
   scope :uncompleted, -> { where("end_at > '#{Time.now}' ") }
   scope :completed, -> { where("end_at <= '#{Time.now}'") }
   scope :tomorrow, -> { where("start_at between '#{Date.tomorrow.beginning_of_day}' and '#{Date.tomorrow.end_of_day}'") }
+  scope :in_a_week, -> { where("start_at between '#{Date.tomorrow.beginning_of_day}' and '#{(Date.today+7.days).end_of_day}'") }
   scope :upcomming, -> { where("start_at > '#{Time.now}' and end_at < '#{Date.tomorrow.end_of_day}' ") }
 
   def create_webex_meeting

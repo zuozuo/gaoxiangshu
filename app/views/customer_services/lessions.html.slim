@@ -12,6 +12,7 @@ table.table.table-hover
       th
         | 老师
       th
+        | Webex Meeting Room
   tbody
     - @lessions.each do |l|
       tr
@@ -30,3 +31,8 @@ table.table.table-hover
             = link_to "去上课", l, target: '_blank'
           - else
             | -
+        td
+          - if l.host_url
+            = link_to "重新生成 Webex Meeting Room", lession_create_webex_meeting_path(l), method: :post
+          - else
+            = link_to "生成 Webex Meeting Room", lession_create_webex_meeting_path(l), method: :post

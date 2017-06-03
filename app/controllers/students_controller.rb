@@ -2,6 +2,10 @@ class StudentsController < ApplicationController
   before_action :set_student, only: [:show, :edit, :update]
   layout 'student', only: [:show, :courses]
 
+  def new
+    @student = current_user.students.new  
+  end
+
   def index
     @students = Student.all.order('id desc')
   end
@@ -38,12 +42,26 @@ class StudentsController < ApplicationController
 
   def edit
   end
+
+  def create
+    @student = current_user.students.build(student_params)
+    @student.init_password = @student.password
+    respond_to do |format|
+      if @student.save!
+        format.html { redirect_to customer_service_students_path(current_user), notice: 'User was successfully updated.' }
+        format.json { render :show, status: :ok, location: @student }
+      else
+        format.html { render :new }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
+  end
   
   private
 
     def student_params
       params.require(:student).permit(
-        :name, :email, :phone, :age, :gender, :avatar, :school, :school_type, :grade
+        :name, :email, :phone, :age, :gender, :avatar, :school, :school_type, :grade, :password, :init_password
       )
     end
 

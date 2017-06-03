@@ -7,8 +7,10 @@ Rails.application.routes.draw do
   resources :colleges
   resources :news
   resources :users
-  resources :lessions, only: [:show]
-  resources :students, only: [:show, :edit, :update, :index] do
+  resources :lessions, only: [:show] do
+    post :create_webex_meeting
+  end
+  resources :students do
     resources :lessions do
       post :generate, on: :collection
     end

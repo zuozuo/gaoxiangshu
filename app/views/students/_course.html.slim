@@ -17,12 +17,21 @@
         = cs.total_lessions
         |  节
     p
+      strong 起始上课日期
+      span.pull-right
+        = cs.start_date
+    p
       strong 上课时间：
     - cs.lession_times.each do |lt|
       p
-        span.mr17= LessionTime::WeekDays[lt.day.to_i].first
+        span.mr17= LessionTime::WeekDays[lt.day.to_i-1].first
         span.mr17= lt.start_at.strftime("%H:%M")
         span.mr17 到
         = lt.end_at.strftime("%H:%M")
     .center
-      = button_to "生成课时", generate_student_lessions_path(@student, course_student_id: cs.id), class: 'btn btn-default'
+      .row.pt17
+        .col-md-6
+          = button_to "生成课时", generate_student_lessions_path(@student, course_student_id: cs.id), class: 'btn btn-default'
+        .col-md-6
+          - if @student.lessions.where(course_id: cs.course.id).completed.empty?
+            = button_to "删除课程", [@student, cs], class: 'btn btn-warning btn-sm', method: :delete

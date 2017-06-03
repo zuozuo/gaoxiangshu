@@ -30,11 +30,7 @@ class CoursesController < ApplicationController
       AND   `at`.`day` = #{day};}
       ts = ActiveRecord::Base.connection.execute(sql)
       ts = ts.reject do |t|
-        LessionTime.where(teacher_id: t.first).where(day: day).where(%{
-          ('#{start_at}' > start_at and '#{start_at}') < end_at OR
-          ('#{end_at}' > start_at and '#{end_at}' < end_at) OR
-          ('#{start_at}' < start_at and '#{end_at}' > start_at)
-         }).present?
+        LessionTime.where(teacher_id: t.last).where(day: day).where(%{ ('#{start_at}' > start_at and '#{start_at}') < end_at OR ('#{end_at}' > start_at and '#{end_at}' < end_at) OR ('#{start_at}' < start_at and '#{end_at}' > start_at) }).present?
       end
       teachers << ts
     end

@@ -29,6 +29,7 @@ class ApplicationController < ActionController::Base
     when 'Teacher'
       teacher_path(resource)
     when 'CustomerService'
+      customer_service_lessions_path(current_user)
     else
       students_path
     end

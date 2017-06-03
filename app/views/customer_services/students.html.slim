@@ -6,10 +6,6 @@
           tr
             th width=200
               | 姓名
-            th width=200
-              | 邮箱
-            th width=200
-              | 电话
             th width=80
               | 年龄
             th width=80
@@ -21,12 +17,14 @@
             th width=100
               | 年级
             th width=100
+              | 状态
+            th width=100
+              | 初始密码
+            th width=100
         tbody
           - @students.each do |s|
             tr
               td= link_to s.name, student_path(s)
-              td= s.email
-              td= s.phone
               td= s.age
               td= s.gender ? "男" : "女"
               td= s.school
@@ -34,5 +32,9 @@
               td
                 = s.grade
                 | 年级
+              td
+                = s.status ? "已购课程" : "未购课程"
+              td
+                = s.init_password
               td
                 = link_to "他的课程", student_path(s), target: '_blank'

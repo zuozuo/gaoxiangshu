@@ -17,6 +17,14 @@ class CourseStudentsController < ApplicationController
     @course_student = CourseStudent.find(params[:id])
   end
 
+  def destroy
+    @student = Student.find(params[:student_id])
+    @course_student = CourseStudent.find(params[:id])
+    @student.lessions.where(course_id: @course_student.course_id).destroy_all
+    @course_student.destroy
+    redirect_to :back
+  end
+
   def create
     @student = Student.find(params[:student_id])
     @course_student = @student.course_students.new(course_student_params)
@@ -36,7 +44,8 @@ class CourseStudentsController < ApplicationController
             }
           end
           @student.lession_times.create! ltimes
-          redirect_to [@student, @course_student], notice: 'College was successfully created.'
+          @student.update(status: true)
+          redirect_to student_courses_path(@student), notice: 'College was successfully created.'
         end
         format.json { render :show, status: :created, location: @course_student }
       else

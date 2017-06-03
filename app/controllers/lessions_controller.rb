@@ -1,5 +1,5 @@
 class LessionsController < ApplicationController
-  before_action :set_lession, only: [:show, :edit, :update, :destroy]
+  before_action :set_lession, only: [:show, :edit, :update, :destroy, :create_webex_meeting]
   
   def generate
     @student = Student.find(params[:student_id])
@@ -14,8 +14,9 @@ class LessionsController < ApplicationController
           if count < total
             diff = lt.start_at - lt.start_at.at_beginning_of_day
             duration = lt.end_at - lt.start_at
-            date = course_student.start_date.beginning_of_week
-            date = date + lt.day.to_i + i*7
+            date = course_student.start_date.beginning_of_week + lt.day.to_i
+            date += 7.days if date <= Date.today
+            date += (i*7).days
             start_at = date + diff.seconds
             end_at = start_at + duration.seconds
             Lession.create!(
@@ -24,7 +25,8 @@ class LessionsController < ApplicationController
               start_at: start_at,
               student_id: @student.id,
               course_id: course_student.course_id,
-              teacher_id: course_student.teacher_id
+              teacher_id: course_student.teacher_id,
+              customer_service_id: @student.customer_service_id
             )
             count += 1
           end
@@ -32,6 +34,11 @@ class LessionsController < ApplicationController
       end
     end
     redirect_to @student
+  end
+
+  def create_webex_meeting
+    @lession.create_webex_meeting
+    redirect_to :back
   end
 
   # GET /lessions
@@ -97,7 +104,7 @@ class LessionsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_lession
-      @lession = Lession.find(params[:id])
+      @lession = Lession.find(params[:id] || params[:lession_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

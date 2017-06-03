@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601162819) do
+ActiveRecord::Schema.define(version: 20170603045935) do
 
   create_table "applies", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
@@ -94,15 +94,17 @@ ActiveRecord::Schema.define(version: 20170601162819) do
     t.datetime "start_at"
     t.integer  "status"
     t.string   "url"
-    t.datetime "created_at",                     null: false
-    t.datetime "updated_at",                     null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
     t.datetime "end_at"
     t.integer  "day"
     t.string   "meetingkey"
-    t.text     "join_url",         limit: 65535
-    t.text     "host_url",         limit: 65535
+    t.text     "join_url",            limit: 65535
+    t.text     "host_url",            limit: 65535
     t.string   "meeting_password"
+    t.integer  "customer_service_id"
     t.index ["course_id"], name: "index_lessions_on_course_id", using: :btree
+    t.index ["customer_service_id"], name: "index_lessions_on_customer_service_id", using: :btree
     t.index ["start_at"], name: "index_lessions_on_start_at", using: :btree
     t.index ["student_id"], name: "index_lessions_on_student_id", using: :btree
     t.index ["teacher_id"], name: "index_lessions_on_teacher_id", using: :btree
@@ -122,17 +124,17 @@ ActiveRecord::Schema.define(version: 20170601162819) do
 
   create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name"
-    t.string   "email",                  default: "", null: false
+    t.string   "email",                  default: "",    null: false
     t.string   "phone"
     t.integer  "age"
     t.boolean  "gender"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.datetime "created_at",                             null: false
+    t.datetime "updated_at",                             null: false
+    t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
+    t.integer  "sign_in_count",          default: 0,     null: false
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -148,6 +150,8 @@ ActiveRecord::Schema.define(version: 20170601162819) do
     t.string   "school_type"
     t.string   "time_zone"
     t.integer  "customer_service_id"
+    t.boolean  "status",                 default: false
+    t.string   "init_password"
     t.index ["customer_service_id"], name: "index_users_on_customer_service_id", using: :btree
     t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
