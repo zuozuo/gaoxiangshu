@@ -1,6 +1,7 @@
 .thumbnail.avatar.pull-left
   = image_tag @student.avatar.url(:original), size: "100x100"
-= link_to "编辑", edit_student_path(@student), class: 'pull-right', target: '_blank'
+- if current_user.operator? || current_user.id == @student.id
+  = link_to "编辑", edit_student_path(@student), class: 'pull-right', target: '_blank'
 .clearfix
 .info
   p 

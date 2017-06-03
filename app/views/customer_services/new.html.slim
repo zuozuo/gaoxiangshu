@@ -1,5 +1,20 @@
-h1 New customer_service
+h1 添加客服
+br
+= simple_form_for(@customer_service) do |f|
+  = f.error_notification
 
-== render 'form'
+  .form-inputs
+    strong 性别：
+    = f.collection_radio_buttons :gender, [[true, '男'] ,[false, '女']], :first, :last, label: "性别"
+    = f.input :avatar, as: :file, label: "头像"
+    = f.input :name, label: "姓名"
+    = f.input :email, label: "邮箱"
+    = f.input :phone, label: "电话"
+    = f.input :password, label: "密码"
 
-= link_to 'Back', customer_services_path
+  .form-actions
+    = f.button :submit, value: "提交"
+    br
+    br
+    br
+    br

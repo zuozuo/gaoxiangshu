@@ -28,10 +28,11 @@
         span.mr17= lt.start_at.strftime("%H:%M")
         span.mr17 到
         = lt.end_at.strftime("%H:%M")
-    .center
-      .row.pt17
-        .col-md-6
-          = button_to "生成课时", generate_student_lessions_path(@student, course_student_id: cs.id), class: 'btn btn-default'
-        .col-md-6
-          - if @student.lessions.where(course_id: cs.course.id).completed.empty?
-            = button_to "删除课程", [@student, cs], class: 'btn btn-warning btn-sm', method: :delete
+    - if current_user.operator?
+      .center
+        .row.pt17
+          .col-md-6
+            = button_to "生成课时", generate_student_lessions_path(@student, course_student_id: cs.id), class: 'btn btn-default'
+          .col-md-6
+            - if @student.lessions.where(course_id: cs.course.id).completed.empty?
+              = button_to "删除课程", [@student, cs], class: 'btn btn-warning btn-sm', method: :delete

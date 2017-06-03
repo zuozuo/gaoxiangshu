@@ -13,6 +13,9 @@ class StudentsController < ApplicationController
   def courses
     @student = Student.find(params[:student_id])
     @course_students = @student.course_students.includes(:teacher, :course, :lession_times)
+    if current_user.teacher?
+      @course_students = @course_students.where(teacher_id: current_user.id)
+    end
   end
 
   def show
@@ -23,6 +26,9 @@ class StudentsController < ApplicationController
         .order('start_at')
         .includes(:teacher, :course)
         .send(params[:lession_status])
+      if current_user.teacher?
+        @lessions = @lessions.where(teacher_id: current_user.id)
+      end
     else
       @lessions = []
     end

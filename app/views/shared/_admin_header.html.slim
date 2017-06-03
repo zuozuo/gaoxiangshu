@@ -5,12 +5,16 @@ header.bs-docs-nav.navbar.navbar-static-top
         ul.nav.navbar-nav
           li class="#{'active' if params[:controller] == 'students'}"
             = link_to "学生列表", students_path
-          li class="#{'active' if params[:controller] == 'teachers'}"
+          li class="#{'active' if params[:controller] == 'teachers' &&params[:action] == 'index'}"
             = link_to "老师列表", teachers_path
+          li class="#{'active' if params[:controller] == 'teachers' && params[:action] == 'new'}"
+            = link_to "添加老师", new_teacher_path
           li class="#{'active' if params[:controller] == 'courses'}"
             = link_to "课程列表", courses_path
-          li class="#{'active' if params[:controller] == 'customer_services'}"
+          li class="#{'active' if params[:controller] == 'customer_services' && params[:action] == 'index'}"
             = link_to "客服列表", customer_services_path
+          li class="#{'active' if params[:controller] == 'customer_services' && params[:action] == 'new'}"
+            = link_to "添加客服", new_customer_service_path
           li class="#{'active' if params[:controller] == 'news'}"
             = link_to "首页新闻", news_index_path
           li class="#{'active' if params[:controller] == 'applies'}"

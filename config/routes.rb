@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :lession_times
     get :courses
   end
-  resources :teachers, only: [:show, :edit, :update, :index] do
+  resources :teachers do
     get :courses
     get :students
     resources :availible_times

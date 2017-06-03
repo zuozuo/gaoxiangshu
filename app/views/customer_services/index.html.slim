@@ -11,6 +11,8 @@
             th width=200
               | 电话
             th width=200
+              | 初始密码
+            th width=200
               | 他的学生
         tbody
           - @customer_services.each do |cs|
@@ -18,4 +20,5 @@
               td= link_to cs.name, cs
               td= cs.email
               td= cs.phone
+              td= cs.init_password
               td= link_to "他负责的学生", cs

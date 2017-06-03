@@ -34,9 +34,10 @@ class CustomerServicesController < ApplicationController
   def create
     @customer_service = CustomerService.new(customer_service_params)
 
+    @customer_service.init_password = @customer_service.password
     respond_to do |format|
       if @customer_service.save
-        format.html { redirect_to @customer_service, notice: 'Customer service was successfully created.' }
+        format.html { redirect_to customer_services_path, notice: 'Customer service was successfully created.' }
         format.json { render :show, status: :created, location: @customer_service }
       else
         format.html { render :new }
@@ -77,6 +78,8 @@ class CustomerServicesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def customer_service_params
-      params.fetch(:customer_service, {})
+      params.require(:customer_service).permit(
+        :name, :email, :password, :init_password, :avatar, :gender, :phone
+      )
     end
 end

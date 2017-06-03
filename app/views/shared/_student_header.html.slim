@@ -3,8 +3,10 @@ header.bs-docs-nav.navbar.navbar-static-top
     .navbar-header style='width:100%'
       nav.collapse.navbar-collapse#bs-navbar
         ul.nav.navbar-nav
-          li class="#{'active' if params[:controller] == current_user.type.downcase.pluralize}"
+          li class="#{'active' if params[:action] == 'show' || params[:action] == 'courses'}"
             = link_to "我的课程", my_path
+          li class="#{'active' if params[:action] == 'edit'}"
+            = link_to "编辑个人信息", edit_student_path(current_user)
         ul class="nav navbar-nav navbar-right"
           li class="dropdown"
             = link_to '#', class: 'dropdown-toggle', data: {toggle: 'dropdown'}, role: :button do

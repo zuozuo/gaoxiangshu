@@ -3,6 +3,10 @@ class TeachersController < ApplicationController
 
   layout 'teacher', only: [:show, :courses]
 
+  def new
+    @teacher = Teacher.new
+  end
+
   def index
     @teachers = Teacher.all.order('id desc')
   end
@@ -13,6 +17,21 @@ class TeachersController < ApplicationController
 
   def courses
     @courses = @teacher.courses
+  end
+
+  def create
+    @teacher = Teacher.new(teacher_params)
+
+    @teacher.init_password = @teacher.password
+    respond_to do |format|
+      if @teacher.save!
+        format.html { redirect_to teachers_path, notice: 'Customer service was successfully created.' }
+        format.json { render :show, status: :created, location: @customer_service }
+      else
+        format.html { render :new }
+        format.json { render json: @customer_service.errors, status: :unprocessable_entity }
+      end
+    end
   end
 
   def show
@@ -47,7 +66,7 @@ class TeachersController < ApplicationController
 
     def teacher_params
       params.require(:teacher).permit(
-        :name, :email, :phone, :age, :gender, :avatar, :school, :school_type, :grade, :time_zone, :time_difference
+        :name, :email, :phone, :age, :gender, :avatar, :school, :school_type, :grade, :time_zone, :time_difference, :password
       )
     end
 
