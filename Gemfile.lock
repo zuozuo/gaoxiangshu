@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:zuozuo/webex_xml_api.git
-  revision: bb75fdf84779c5be2b43e6004c5504fcb31fb7f4
+  revision: 000e3b749c2c7074ca9c8e461a0b4bd70231f317
   specs:
     webex_xml_api (0.1.1)
       httparty
