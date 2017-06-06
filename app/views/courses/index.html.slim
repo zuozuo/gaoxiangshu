@@ -21,7 +21,7 @@
                 | 分钟
           .col-md-10
             .row
-              - teachers = c.teachers.select("course_teachers.id as ct_id", "users.id", "users.name").group('users.id')
+              - teachers = c.teachers.select("course_teachers.id as ct_id", "users.id", "users.name").distinct('users.id')
               - teachers.each do |t|
                 = link_to teacher_courses_path(t) do
                   .thumbnail.pull-left.mr17.pointer[title="#{t.name}" style='width: 50px' data-toggle='tooltip']
