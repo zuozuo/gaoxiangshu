@@ -25,4 +25,7 @@ table.table.table-hover
           - if l.host_url
             = link_to "去上课", l, target: '_blank'
           - else
-            | -
+            - if current_user.operator?
+              = link_to "生成 Webex Meeting Room", lession_create_webex_meeting_path(l), method: :post
+            - else
+              | -

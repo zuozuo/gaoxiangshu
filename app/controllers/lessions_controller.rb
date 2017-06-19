@@ -3,12 +3,14 @@ class LessionsController < ApplicationController
   
   def generate
     @student = Student.find(params[:student_id])
-    if @student.lessions.empty?
-      course_student = CourseStudent.find(params[:course_student_id])
+
+    course_student = CourseStudent.find(params[:course_student_id])
+    if @student.lessions.where(course_id: course_student.course_id).empty?
       lession_times = course_student.lession_times.order("day")
       length = lession_times.length
       total = course_student.total_lessions
       count = 0
+
       (total/length + 1).times do |i|
         lession_times.each do |lt|
           if count < total

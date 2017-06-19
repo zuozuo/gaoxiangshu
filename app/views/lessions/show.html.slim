@@ -10,6 +10,9 @@
       p
         span Student:
         span.ml40= link_to @lession.student.name, @lession.student
+        p
+          span.mr40 Meeting room password:
+          = @lession.meeting_password
       - if current_user.student?
         p
           span.mr40 Link to webex meeting room:

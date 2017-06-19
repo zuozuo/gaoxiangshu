@@ -14,11 +14,18 @@
         .row.course-info
           .col-md-2
             span
-              p
+              div
                 strong= c.name
-              p
+              div
                 = c.length
                 | 分钟
+                |  - 
+                = c.lession_count
+                | 课时
+              div
+                = c.start_at
+                |  - 
+                = c.end_at
           .col-md-10
             .row
               - teachers = c.teachers.select("course_teachers.id as ct_id", "users.id", "users.name").distinct('users.id')
