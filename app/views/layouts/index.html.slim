@@ -6,190 +6,32 @@ html
     = csrf_meta_tags
     = stylesheet_link_tag    'index', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'index', 'data-turbolinks-track' => 'reload'
-  body
-    - if flash.present?
-      #flash
-        - flash.each do |key, value|
-          div class="flash_#{key}"
-            p = value
-    .container
-      .header
-        .goto_listen
-          a href='#listen'
-            = image_tag("index/goto_listen.png", class: 'pull-right')
+  body.index
+    = render 'shared/flash'
+    = image_tag 'index/wechat_qrcode.png', class: 'wechat_qrcode'
+    .header
+      .container
+        .pull-left
+          = image_tag 'index/logo_top.png', style: 'height: 80px;'
+        .pull-right
+          div.line
+            = image_tag 'index/wechat.png', class: 'wechat pointer pull-left wechat_logo', style: 'height: 25px;'
+            = image_tag 'index/phone.png', class: 'pull-left', style: 'height: 25px;'
+            .phone-text.pull-left style='margin-left: 10px;'
+              | (010)-400-650-6762
+            .clearfix
+          div.line
+            strong.pull-right.login-link= link_to "登录", new_user_session_path
+            = image_tag 'index/login.png', class: 'pull-right', style: 'height: 30px;'
+            .clearfix
         .clearfix
-        .logo.center
-          = image_tag("index/logo.png")
-        .slogen.center
-          = image_tag("index/take_away_your_knowledge.png")
-        .text_logo.center
-          = image_tag("index/tall_oak_academy.png")
-        .text_divider.center
-          = image_tag("index/text_divider.png")
-        /.life_long.center
-          = image_tag("index/life_long_knowledge.png")
-      .header_bottom.container
-        = image_tag("index/header_bottom.png")
+    = render 'shared/login'
     .container
-      .tabs.center
-        .imgs.pt30
-          a.img-link href='#listen'
-            = image_tag("index/listen.png")
-            p 试听课程
-          a.img-link href='#news'
-            = image_tag("index/news.png")
-            p 活动新闻
-          a.img-link href='#go_abroad'
-            = image_tag("index/go_abroad.png")
-            p 教学优势
-          a.img-link href='#about_us'
-            = image_tag("index/about_us.png")
-            p 关于我们
-          a.img-link href=new_user_session_path
-            = image_tag("index/login.png")
-            p 登录网站
-          .clearfix
-      /.arrow.center.mt30
-        = image_tag("index/arrow.png")
-      .teaching_advantage.center#go_abroad
-        = image_tag("index/teaching_advantage.png")
-        .advantage_content.row
-          .col-md-3.content
-            h3.title 定制课程
-            p 语言学习因人而异，个体各有不同，您的孩子还在上统一教材的英语吗？ 高橡树定制课程为您的孩子寻找适合的语言学习方法。
-            ul
-              li 为您匹配适合孩子的专属老师；
-              li 根据孩子的语言现状匹配适合的课程,因需施教；
-              li 以兴趣为中心诱导式教育，让孩子在自发性学习中轻松提高；
-              li 结合社会热点的课程讨论，让孩子增强独立思考能力的同时学会美式思维。没有美式思维模式的英语都是chinglish!
-              li 同步美国教学大纲，强调对知识的应用过程，而非应试教育
-          .col-md-3.content
-            h3.title 内驱力测试
-            p 让孩子找到学习的自发性原动力，帮助孩子树立语言学习的自信。架起孩子兴趣学习的桥梁。
-            ul
-              li 帮助您找到孩子学习中的问题，快速建立学习自信；
-              li 发掘兴趣，通过兴趣快速提高英语学习能力；
-              li 辅助教师更快提升孩子通过兴趣学习语言的能力。
-              li 一个与家长一起发掘孩子的沟通平台。
-          .col-md-3.content
-            h3.title 家庭计划
-            p 我们帮助家长了解孩子，让家长对孩子的求学之路找到方向，不再迷茫。
-            ul
-              li 留学顾问让复杂的留学申请过程简单明了，找到适合孩子发展的未来之路；
-              li 提前两至三年制定计划，让您的孩子出国留学有备无患
-              li 中美教育差异的全面解读，提前预热美式教育。
-              li 孩子优势充分挖掘，让孩子更出众。
-          .col-md-3.content
-            h3.title 美籍教师
-            p  精选美国学校多年教学经验的优秀在册教师亲身任教，教学品质有保证，让孩子提早适应美式文化“母语式”学习英
-            ul
-              li 美国在册教师
-              li 超过五年经验的美国优秀大学毕业的学士、硕士、博士
-              li 精通学业且热爱教育事业，丰富的教学经验
-        /.teacher_info.row style='text-align: left'
-          .col-md-3
-            li 为您匹配适合孩子的专属老师；
-            li 根据孩子的语言现状匹配适合的课程,因需施教；
-            li 以兴趣为中心诱导式教育，让孩子在自发性学习中轻松提高；
-            li 结合社会热点的课程讨论，让孩子增强独立思考能力的同时学会美式思维。没有美式思维模式的英语都是chinglish!
-            li 同步美国教学大纲，强调对知识的应用过程，而非应试教育
-          .col-md-3
-            li 帮助您找到孩子学习中的问题，快速建立学习自信；
-            li 发掘兴趣，通过兴趣快速提高英语学习能力；
-            li 辅助教师更快提升孩子通过兴趣学习语言的能力。
-            li 一个与家长一起发掘孩子的沟通平台。
-          .col-md-3
-            li 留学顾问让复杂的留学申请过程简单明了，找到适合孩子发展的未来之路；
-            li 提前两至三年制定计划，让您的孩子出国留学有备无患
-            li 中美教育差异的全面解读，提前预热美式教育。
-            li 孩子优势充分挖掘，让孩子更出众。
-          .col-md-3
-            li 美国在册教师
-            li 超过五年经验的美国优秀大学毕业的学士、硕士、博士
-            li 精通学业且热爱教育事业，丰富的教学经验
-      .active_news.center#news
-        = image_tag("index/active_news.png")
+      = render 'shared/adv'
+      = render 'shared/academy_adv'
+    = render 'shared/index_footer'
 
-      - news = News.order("id").limit(3)
-      #news_image.carousel.slide
-        .carousel-inner[role="listbox"]
-          - news.each_with_index do |new, i|
-            .item class="#{i == 1 and 'active'}" data-content="#tab#{i}"
-              a href=new.url target="_blank"
-                img src=new.image.url
-        ol.carousel-indicators
-          li[data-target="#news_image" data-slide-to="0"]
-          li.active[data-target="#news_image" data-slide-to="1"]
-          li[data-target="#news_image" data-slide-to="2"]
-        ul.nav.nav-tabs.hidden role='tablist'
-          - news.each_with_index do |new, i|
-            li role="presentation" class="#{i == 1 and 'active'}"
-              a href="#tab_content#{i}" role="tab" data-toggle="tab" id="tab#{i}"
-                = new.title
-        .tab-content
-          - news.each_with_index do |new, i|
-            .tab-pane style='font-size: 16px;' role="tabpanel" class="#{i == 1 and 'active'}" id="tab_content#{i}"
-              = raw new.content.gsub(/\n/, '<br />')
-      .xiangshu_taste.center#listen style='margin-top: 40px;'
-        = image_tag("index/xiangshu_taste.png")
-        /.video_list.center
-          .circle_div.pull-left
-            .circle data-id=1
-          .circle_div.pull-left
-            .circle data-id=2
-          .circle_div.pull-left
-            .circle.active data-id=3
-          .circle_div.pull-left
-            .circle data-id=4
-          .circle_div.pull-left
-            .circle data-id=5
-          .clearfix
-        /.circle_content
-          p#circle_content1.hidden
-            | circle content 1circle content 1circle content 1circle content 1
-          p#circle_content2.hidden
-            | circle content 2circle content 2circle content 2circle content 2
-          p#circle_content3
-            | circle content 3circle content 3circle content 3circle content 3
-          p#circle_content4.hidden
-            | circle content 4circle content 4circle content 4circle content 4
-          p#circle_content5.hidden
-            | circle content 5circle content 5circle content 5circle content 5
-        .apply_listen.center
-          h2 申请试听课
-          = simple_form_for(Apply.new, wrapper: 'no_label') do |f|
-            .form-inputs.center
-              = f.input :name, placeholder: "姓名"
-              = f.input :phone, placeholder: "电话"
-            .form-actions
-              = f.button :submit, "提交"
-    .about_gaoxiangshu.center#about_us
-      = image_tag("index/about_gaoxiangshu.png")
-      .about_content.container
-        h4.mb30.pull-left.title Introduce Ourselves
-        .clearfix
-        .content_left.pull-left
-          p 高橡树工作团队分布于中国北京以及美国洛杉矶，提供美国教育体系下的针对初、高中生的课外补充课程及大学申请指导。我们拥有卓越的团队体系，丰富的教学管理经验，提供纯正美国学校课程，学习美国政府教学体系下的教学方法和学科内容，致力于将美国校园知识传递进入中国让学生有通路的去学习如何成为一名美国大学生，以及了解美国的生活、学习、沟通、文化的真实情况。我们坚信知识的掌握胜于考试的胜出，我们更坚信只要真正掌握了知识，就一定能胜出考试。 
-          p Tall Oak Academy located in beijing and los angeles, provides secondary school (middle and high schools) supplementary courses and college application packages to students globally. Excellent teamwork,rich experiences in teaching and management, updated  curriculum allied with official teaching methodology and content are our strengths. we are devoted to deliver a true american education experience to chinese students. we are accountable for quality teaching and learning with a sole purpose of helping chinese students to fulfill their college dreams. test preparation is not our only goal. we expect our students to experience true american education and culure by building up a solid foundation in all aspects.
-        .content_middle.pull-left
-          = image_tag("index/about_us_divider.png")
-        .content_right.pull-left
-          = image_tag("index/map.png")
-        .clearfix
-      .back_top.center
-        a href='#'
-          = image_tag("index/back_top.png", data: {toggle: 'tooltip'}, title: '返回顶部')
-      .social_net.center
-        .logo_list
-          = image_tag("index/wechat.png", class: :wechat)
-          = image_tag("index/weibo.png", class: :weibo)
-      .footer
-        p
-          span.mr40 地址：北京市石景山区八大处路点石商务中心1号楼507
-          span.mr40 电话：(010) 400-650-6762
-          span.mr40 更多资讯敬请关注微信公众号“高橡树国际教育”，感谢您的关注
-        p 
-          span.mr40 高橡树（北京）有限公司 
-          span.mr40 京ICP备 17025235号
-    .footer_line.container
-      = image_tag('index/footer_line.png')
+javascript:
+  $('.wechat_logo').hover(function(){
+    $('.wechat_qrcode').slideToggle()
+  })

@@ -1,0 +1,36 @@
+.login
+  = image_tag 'index/top_background.png', class: 'top_background'
+  h2.title
+    | TALL OAK ACADEMY
+  .slogen-and-apply
+    .col-md-6.slogen-text
+      h2.slogen.first
+        | “带走的学识”
+      h2.slogen.last
+        | 高橡树学院
+    .col-md-6.apply-form
+      .form
+        .form-title
+          h2
+            | LIEF LONG KNOWLEDGE
+          h1
+            | 立刻报名 免费体验
+        = simple_form_for(Apply.new) do |f|
+          = f.error_notification
+
+          .form-inputs
+            .input-line
+              = image_tag 'index/name-input.png'
+              = f.input_field :name, placeholder: '学生姓名'
+            .input-line
+              = image_tag 'index/phone-input.png'
+              = f.input_field :phone, placeholder: '家长/学生电话'
+            .input-line
+              = image_tag 'index/email-input.png'
+              = f.input_field :email, placeholder: '家长/学生邮箱'
+
+          .form-actions
+            = f.button :submit, value: '立即试听'
+            p style='color: #999;margin-top: 10px'
+              | 高橡树学院保护您的隐私
+

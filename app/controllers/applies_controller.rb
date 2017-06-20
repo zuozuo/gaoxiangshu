@@ -70,6 +70,6 @@ class AppliesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def apply_params
-      params.require(:apply).permit(:name, :phone)
+      params.require(:apply).permit(:name, :phone, :email)
     end
 end
