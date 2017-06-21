@@ -15,7 +15,7 @@
     = f.error_notification
 
     .form-inputs
-      = f.input :course_id, label: "选择课程", collection: Course.all.map{|c| ["#{c.name}  #{c.lession_count}课时  #{c.start_at}-#{c.end_at}"]}, prompt: "选择课程"
+      = f.input :course_id, label: "选择课程", collection: Course.all.map{|c| ["#{c.name}  #{c.lession_count}课时  #{c.start_at}-#{c.end_at}", c.id]}, prompt: "选择课程"
       = link_to '', '#', remote: true, class: 'hidden get_teachers'
       #select-teachers
         = f.input :teacher_id, collection: [], label: "选择老师", prompt: "选择老师之前要先选好课程"
