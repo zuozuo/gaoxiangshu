@@ -16,25 +16,26 @@ class CoursesController < ApplicationController
 
   def teachers
     @course = Course.find(params[:course_id])
-    lession_times = ActiveSupport::JSON.decode(params[:data])
-    teachers = []
-    lession_times.each do |lt|
-      day, start_at, end_at = lt
-      sql = %{SELECT `users`.`name`, `users`.`id` FROM `users` 
-      INNER JOIN `course_teachers` as ct ON `users`.`id` = `ct`.`teacher_id`
-      INNER JOIN `availible_times` as at ON `users`.`id` = `at`.`teacher_id`
-      WHERE `users`.`type` IN ('Teacher')
-      AND   `ct`.`course_id` = #{@course.id}
-      AND   `at`.`start_at` <= '#{start_at}'
-      AND   `at`.`end_at` >= '#{end_at}'
-      AND   `at`.`day` = #{day};}
-      ts = ActiveRecord::Base.connection.execute(sql)
-      ts = ts.reject do |t|
-        LessionTime.where(teacher_id: t.last).where(day: day).where(%{ ('#{start_at}' > start_at and '#{start_at}') < end_at OR ('#{end_at}' > start_at and '#{end_at}' < end_at) OR ('#{start_at}' < start_at and '#{end_at}' > start_at) }).present?
-      end
-      teachers << ts
-    end
-    @teachers = teachers.inject {|res, item| res & item} || []
+    @teachers = @course.teachers.pluck(:name, :id)
+    # lession_times = ActiveSupport::JSON.decode(params[:data])
+    # teachers = []
+    # lession_times.each do |lt|
+    #   day, start_at, end_at = lt
+    #   sql = %{SELECT `users`.`name`, `users`.`id` FROM `users` 
+    #   INNER JOIN `course_teachers` as ct ON `users`.`id` = `ct`.`teacher_id`
+    #   INNER JOIN `availible_times` as at ON `users`.`id` = `at`.`teacher_id`
+    #   WHERE `users`.`type` IN ('Teacher')
+    #   AND   `ct`.`course_id` = #{@course.id}
+    #   AND   `at`.`start_at` <= '#{start_at}'
+    #   AND   `at`.`end_at` >= '#{end_at}'
+    #   AND   `at`.`day` = #{day};}
+    #   ts = ActiveRecord::Base.connection.execute(sql)
+    #   ts = ts.reject do |t|
+    #     LessionTime.where(teacher_id: t.last).where(day: day).where(%{ ('#{start_at}' > start_at and '#{start_at}') < end_at OR ('#{end_at}' > start_at and '#{end_at}' < end_at) OR ('#{start_at}' < start_at and '#{end_at}' > start_at) }).present?
+    #   end
+    #   teachers << ts
+    # end
+    # @teachers = teachers.inject {|res, item| res & item}
   end
 
   # GET /courses/new
