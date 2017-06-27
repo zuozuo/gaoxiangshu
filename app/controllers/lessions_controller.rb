@@ -40,7 +40,7 @@ class LessionsController < ApplicationController
 
   def create_webex_meeting
     @lession.create_webex_meeting
-    redirect_to :back
+    redirect_to :back, notice: "会议生成成功"
   end
 
   # GET /lessions

@@ -24,4 +24,6 @@
         p
           span.mr40 Link to join the webex meeting room:
           = link_to "Join the meeting", @lession.join_url, target: '_blank'
+        p
+          = link_to "Rgenerate webex meeting room", lession_create_webex_meeting_path(@lession), method: :post
   .col-md-3
